@@ -1,0 +1,27 @@
+---
+const navList = [{
+  name: 'Home',
+  link: '/'
+}, {
+  name: 'About',
+  link: '/about'
+}, {
+  name: 'Blog',
+  link: '/blog'
+}]
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>我很酷的 Astro 网站</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <nav class="fixed w-full text-right">
+      {navList.map((item)=>(<a href={item.link}>{item.name}</a>))}
+    </nav>
+    <article>
+      <slot />
+    </article>
+  </body>
+</html>
