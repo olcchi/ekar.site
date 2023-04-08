@@ -1,6 +1,5 @@
 {
   "name": "site-v2",
-  "type": "module",
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
@@ -8,19 +7,22 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.astro",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.astro ",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx,.astro --fix"
   },
   "dependencies": {
     "@astrojs/react": "^2.1.1",
     "@headlessui/react": "^1.7.13",
+    "@storyblok/astro": "^2.0.16",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "astro": "^2.1.9",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "vite": "^4.2.1"
   },
   "devDependencies": {
+    "@evan-yang/eslint-config": "^1.0.9",
     "@iconify-json/mdi": "^1.1.50",
     "@typescript-eslint/parser": "^5.57.1",
     "@unocss/preset-attributify": "^0.50.6",
