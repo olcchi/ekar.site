@@ -1,27 +1,25 @@
 ---
-const navList = [{
-  name: 'Home',
-  link: '/'
-}, {
-  name: 'About',
-  link: '/about'
-}, {
-  name: 'Blog',
-  link: '/blog'
-}]
+import Header from '@components/header.astro'
+interface props {
+  title: string;
+}
+const { title } = Astro.props
 ---
+
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <title>我很酷的 Astro 网站</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <title>{title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
-    <nav class="fixed w-full text-right">
-      {navList.map((item)=>(<a href={item.link}>{item.name}</a>))}
-    </nav>
-    <article>
+    <Header/>
+    <article class='h-95vh absolute w-full top-5vh dark:bg-dark-9 transition-all duration-200 ease-in-out'>
       <slot />
     </article>
   </body>
 </html>
+
+<script>
+
+</script>
