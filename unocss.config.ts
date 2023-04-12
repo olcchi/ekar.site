@@ -13,12 +13,12 @@ export default defineConfig({
     presetUno(),
     presetAttributify(),
     presetWebFonts(
-      {
-        provider: 'bunny',
-        fonts: {
-          serif: 'Alice',
-        },
-      },
+      // {
+      //   provider: 'bunny',
+      //   fonts: {
+      //     serif: 'Alice',
+      //   },
+      // },
     ),
     presetTypography(),
   ],
