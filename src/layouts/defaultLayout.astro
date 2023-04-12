@@ -1,12 +1,13 @@
 ---
 import Header from '@components/header.astro'
-interface props {
-  title: string;
+import Footer from '@components/footer.astro'
+interface Props {
+  title?: string;
 }
-const { title } = Astro.props
+const { title } = Astro.props;
 ---
-
-<html lang="en">
+<!DOCTYPE html>
+<html>
   <head>
     <meta charset="utf-8" />
     <title>{title}</title>
@@ -14,12 +15,11 @@ const { title } = Astro.props
   </head>
   <body>
     <Header/>
-    <article class='h-95vh absolute w-full top-5vh dark:bg-dark-9 transition-all duration-200 ease-in-out'>
+    <main
+      class="h-auto absolute w-full top-12 flex justify-center defaultDark defaultLight defaultAnimation"
+    >
       <slot />
-    </article>
+    </main>
+    <Footer/>
   </body>
 </html>
-
-<script>
-
-</script>
