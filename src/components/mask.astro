@@ -1,0 +1,107 @@
+---
+// const navList = [
+//   {
+//     name: 'Home',
+//     link: '/',
+//   },
+//   {
+//     name: 'About',
+//     link: '/about',
+//   },
+//   {
+//     name: 'Blog',
+//     link: '/blog',
+//   },
+// ];
+---
+
+<div
+  id="mask"
+  class=" fixed h-12 flex items-center w-full z-30 defaultAnimation"
+>
+  <!-- {
+    navList.map(item => (
+      <a
+        class={`${
+          item.link === Astro.url.pathname
+            ? 'text-black dark:text-gray-2'
+            : 'text-black dark:text-white '
+        } defaultAnimation m-2 text-sm  hover:opacity-70`}
+        href={item.link}
+      >
+        {item.name}
+      </a>
+    ))
+  } -->
+  <i
+    class="dark:text-white text-black defaultAnimation absolute right-5 text-xl"
+    id="tehmeToggle"/>
+</div>
+
+<script is:inline>
+  const themeToggle = document.getElementById('tehmeToggle')
+  const toggleThemeIcon = () => {
+
+    themeToggle.classList.toggle(
+      'i-mdi-moon-waning-crescent',
+      localStorage.getItem('globalTheme') === 'dark',
+    )
+    themeToggle.classList.toggle(
+      '-rotate-45',
+      localStorage.getItem('globalTheme') === 'dark',
+    )
+    themeToggle.classList.toggle(
+      'i-mdi-white-balance-sunny',
+      localStorage.getItem('globalTheme') !== 'dark',
+    )
+    themeToggle.classList.toggle(
+      'rotate-90',
+      localStorage.getItem('globalTheme') !== 'dark',
+    )
+  }
+  const preferTheme = () => {
+
+    const colorSchema = window.matchMedia('(prefers-color-scheme: dark)')
+    const prefersDark = colorSchema.matches
+    !localStorage.getItem('globalTheme') && localStorage.setItem('globalTheme', prefersDark ? 'dark' : 'light')
+    const setting = localStorage.getItem('globalTheme')
+    if (setting === 'dark' || (prefersDark && setting !== 'light'))
+      document.documentElement.classList.toggle('dark', true)
+    toggleThemeIcon()
+    colorSchema.addEventListener('change', () => {
+      document.documentElement.classList.toggle('dark', colorSchema.matches)
+      localStorage.setItem(
+        'globalTheme',
+        colorSchema.matches ? 'dark' : 'light',
+      )
+      toggleThemeIcon()
+    })
+  }
+  const toggleTheme = () => {
+    const isDark = document.documentElement.classList.toggle('dark')
+    localStorage.setItem('globalTheme', isDark ? 'dark' : 'light')
+    toggleThemeIcon()
+  }
+  preferTheme()
+  themeToggle.addEventListener('click', toggleTheme)
+</script>
+
+<style>
+/* #mask{
+  width:100%;
+  height:96px;
+} */
+#mask::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 96px;
+  /* webkit */
+  -webkit-mask-image: linear-gradient(to bottom, black, transparent);
+  /* other */
+  mask-image: linear-gradient(to bottom, black, transparent);
+  backdrop-filter: blur(3px);
+}
+</style>
