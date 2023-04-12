@@ -1,40 +1,15 @@
 ---
-import { useStoryblokApi } from '@storyblok/astro'
-import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
-
+import { getCollection } from 'astro:content'
 export async function getStaticPaths() {
-  const sbApi = useStoryblokApi()
-
-  const { data } = await sbApi.get('cdn/stories', {
-    content_type: 'blogPost',
-    version: import.meta.env.DEV ? 'draft' : 'published',
-  })
-
-  const stories = Object.values(data.stories)
-
-  return stories.map((story) => {
-    return {
-      params: { slug: story.slug },
-    }
-  })
+  const blogEntries = await getCollection('posts')
+  return blogEntries.map(entry => ({
+    params: { slug: entry.slug }, props: { entry },
+  }))
 }
+const { entry } = Astro.props
+const { Content } = await entry.render()
 
-const sbApi = useStoryblokApi()
-const { slug } = Astro.params
-const { data } = await sbApi.get(`cdn/stories/blog/${slug}`, {
-  version: import.meta.env.DEV ? 'draft' : 'published',
-})
-
-const story = data.story;
 ---
-
-<html lang="en">
-  <head>
-    <title>Storyblok & Astro</title>
-  </head>
-  <body>
-    <div class="bg-red-200">
-        <StoryblokComponent blok={story.content} />
-    </div>
-  </body>
-</html>
+<main>
+    <Content/>
+</main>
