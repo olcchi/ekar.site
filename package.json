@@ -13,7 +13,6 @@
   "dependencies": {
     "@astrojs/react": "^2.1.1",
     "@headlessui/react": "^1.7.13",
-    "@storyblok/astro": "^2.0.16",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "astro": "^2.1.9",
@@ -27,7 +26,9 @@
     "@typescript-eslint/parser": "^5.57.1",
     "@unocss/preset-attributify": "^0.50.6",
     "@unocss/preset-icons": "^0.50.6",
-    "@unocss/preset-web-fonts": "^0.50.6",
+    "@unocss/preset-typography": "^0.51.4",
+    "@unocss/preset-web-fonts": "^0.50.8",
+    "@unocss/transformer-directives": "^0.51.4",
     "eslint": "^8.37.0",
     "eslint-plugin-astro": "^0.26.1",
     "unocss": "^0.50.6"
