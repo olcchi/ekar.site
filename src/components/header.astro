@@ -1,82 +1,86 @@
 ---
 const navList = [
   {
-    name: "Home",
-    link: "/",
+    name: 'Home',
+    link: '/',
   },
   {
-    name: "About",
-    link: "/about",
+    name: 'About',
+    link: '/about',
   },
   {
-    name: "Blog",
-    link: "/blog",
+    name: 'Blog',
+    link: '/blog',
   },
 ];
 ---
 
 <nav
-  class="fixed border-b border-b-gray-2 dark:border-b-dark-2 h-5vh flex items-center w-full z-20 dark:bg-dark-9 bg-white transition-all duration-200 ease-in-out"
+  class="fixed defaultDark defaultLight h-12 flex items-center w-full z-20 defaultAnimation"
 >
-
   {
-    navList.map((item) => (
+    navList.map(item => (
       <a
         class={`${
-          item.link === Astro.url.pathname ? "text-black dark:text-gray-2" : "text-black dark:text-white "
-        } transition-all m-2 text-sm duration-200 ease-in-out hover:opacity-70`}
+          item.link === Astro.url.pathname
+            ? 'text-black dark:text-gray-2'
+            : 'text-black dark:text-white '
+        } defaultAnimation m-2 text-sm  hover:opacity-70`}
         href={item.link}
       >
         {item.name}
       </a>
     ))
   }
-    <i
-    class="dark:text-white transition-all duration-200 ease-in-out absolute right-5 text-2xl"
-    id="tehmeToggle"
-    />
+  <i
+    class="dark:text-white text-black defaultAnimation absolute right-5 text-xl"
+    id="tehmeToggle"/>
 </nav>
 
 <script is:inline>
-  // localStorage.clear()
-  const themeToggle = document.getElementById("tehmeToggle");
+  const themeToggle = document.getElementById('tehmeToggle')
   const toggleThemeIcon = () => {
+
     themeToggle.classList.toggle(
-      "i-mdi-circle-half-full",
-      localStorage.getItem("globalTheme") === "dark"
-    );
+      'i-mdi-moon-waning-crescent',
+      localStorage.getItem('globalTheme') === 'dark',
+    )
     themeToggle.classList.toggle(
-      "i-mdi-circle",
-      localStorage.getItem("globalTheme") !== "dark"
-    );
-  };
+      '-rotate-45',
+      localStorage.getItem('globalTheme') === 'dark',
+    )
+    themeToggle.classList.toggle(
+      'i-mdi-white-balance-sunny',
+      localStorage.getItem('globalTheme') !== 'dark',
+    )
+    themeToggle.classList.toggle(
+      'rotate-90',
+      localStorage.getItem('globalTheme') !== 'dark',
+    )
+  }
   const preferTheme = () => {
-    const colorSchema = window.matchMedia("(prefers-color-scheme: dark)");
-    const prefersDark = colorSchema.matches;
-    !localStorage.getItem("globalTheme") &&
-      localStorage.setItem("globalTheme", prefersDark ? "dark" : "light");
-    const setting = localStorage.getItem("globalTheme");
-    if (setting === "dark" || (prefersDark && setting !== "light"))
-      document.documentElement.classList.toggle("dark", true);
-    toggleThemeIcon();
-    colorSchema.addEventListener("change", () => {
-      document.documentElement.classList.toggle("dark", colorSchema.matches);
+
+    const colorSchema = window.matchMedia('(prefers-color-scheme: dark)')
+    const prefersDark = colorSchema.matches
+    !localStorage.getItem('globalTheme') && localStorage.setItem('globalTheme', prefersDark ? 'dark' : 'light')
+    const setting = localStorage.getItem('globalTheme')
+    if (setting === 'dark' || (prefersDark && setting !== 'light'))
+      document.documentElement.classList.toggle('dark', true)
+    toggleThemeIcon()
+    colorSchema.addEventListener('change', () => {
+      document.documentElement.classList.toggle('dark', colorSchema.matches)
       localStorage.setItem(
-        "globalTheme",
-        colorSchema.matches ? "dark" : "light"
-      );
-      toggleThemeIcon();
-    });
-  };
+        'globalTheme',
+        colorSchema.matches ? 'dark' : 'light',
+      )
+      toggleThemeIcon()
+    })
+  }
   const toggleTheme = () => {
-    document.documentElement.classList.toggle("dark");
-    const isDark =
-      localStorage.getItem("globalTheme") === "dark" ? false : true;
-    console.log(isDark);
-    localStorage.setItem("globalTheme", isDark ? "dark" : "light");
-    console.log("globalTheme", localStorage.getItem("globalTheme"));
-    toggleThemeIcon();
-  };
-  preferTheme();
-  themeToggle.addEventListener("click", toggleTheme);
+    const isDark = document.documentElement.classList.toggle('dark')
+    localStorage.setItem('globalTheme', isDark ? 'dark' : 'light')
+    toggleThemeIcon()
+  }
+  preferTheme()
+  themeToggle.addEventListener('click', toggleTheme)
 </script>
