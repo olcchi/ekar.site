@@ -1,0 +1,21 @@
+---
+import DefaultLayout from '@layouts/defaultLayout.astro'
+import BackTo from '@components/backTo.astro'
+const { title } = Astro.props
+---
+
+<DefaultLayout title={title}>
+    <main class="prose w-full">
+        <div id='backToWrapper' class="not-prose">
+            <BackTo backTo="posts" />
+        </div>
+        <article id="postsWrapper">
+            <slot />
+        </article>
+    </main>
+</DefaultLayout>
+
+<script>
+import { useAnimation } from '../utils/useAnimation'
+useAnimation('posts')
+</script>
