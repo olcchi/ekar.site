@@ -1,0 +1,14 @@
+---
+export interface Props {
+backTo: string
+}
+const { backTo } = Astro.props
+---
+<div>
+    <a href={`/${backTo}`} class="flex items-center cursor-pointer hover:text-gray-2">
+        <i class="i-mdi-arrow-left" />
+        <p class="ml-1 font-serif font-medium">
+            {backTo === '' ? 'Index' : backTo}
+        </p>
+    </a>
+</div>
