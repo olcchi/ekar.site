@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content'
+import BackTo from '@components/backTo.astro'
+import DefaultLayout from '@layouts/defaultLayout.astro'
+const Posts2022 = await getCollection('2022')
+const Posts2023 = await getCollection('2023')
+const allPosts = [Posts2022, Posts2023]
+console.log(Posts2022[0].data.pubDate)
+---
+
+<DefaultLayout>
+  <div class="flex flex-col justify-center">
+  <div class="pt-5 pb-5 md:p-5">
+      <BackTo backTo="" />
+    </div>
+    <div id="postsWrapper" class="pt-5 pb-5 md:p-5">
+      <p class="text-base mb-10 italic font-bold ">Blog</p>
+      {
+        allPosts.map((postsCollectionOfYear) => {
+          return (
+            <div class="pb-2 grid grid-cols-6 border-t defaultBorder ">
+              <p class="col-span-1 text-sm text-gray-4 dark:text-dark-2 italic pt-4 pb-4 mr-20">
+                {postsCollectionOfYear[0].collection}
+              </p>
+              {postsCollectionOfYear.map((post) => {
+                return (
+                  <a
+                    id="posts"
+                    href={`/posts/${post.slug}`}
+                    class:list={[
+                      'col-span-5',
+                      'col-start-2',
+                      'flex',
+                      'items-center',
+                      'justify-between',
+                      'p-4',
+                      {
+                        'border-t defaultBorder':
+                          postsCollectionOfYear[0] !== post,
+                      },
+                    ]}
+                  >
+                    <p>{post.data.title}</p>
+                    <p class="text-gray-4 dark:text-dark-2">{post.data.pubDate}</p>
+                  </a>
+                )
+              })}
+            </div>
+          )
+        })
+      }
+    </div>
+  </div>
+</DefaultLayout>
+
+<style>
+  #postsWrapper:hover #posts {
+    @apply dark:text-dark-2 text-gray-3 transition-colors ease-in-out duration-300;
+  }
+  #postsWrapper:hover #posts:hover {
+    @apply defaultDark defaultLight transition-colors ease-in-out duration-100;
+  }
+</style>
