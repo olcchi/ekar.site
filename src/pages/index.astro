@@ -6,12 +6,22 @@ import DefaultLayout from '@layouts/defaultLayout.astro'
 <article id='mainWrapper' class="w-full">
     <section id='aboutMe'>
         <p class="mb-5">Ekar</p>
-        <p></p>
+    </section>
+    <section id='Project'>
+        <p class="mb-5">Ekar</p>
+    </section>
+    <section id='Now'>
+        <p class="mb-5">Ekar</p>
     </section>
 </article>
 </DefaultLayout>
 
-<script>
-import { gsap } from 'gsap'
-gsap.from('#mainWrapper', { opacity: 0, translateY: -12, duration: 1, delay: 0.2 })
+<script >
+import { useAnimation } from '../utils/useAnimation'
+useAnimation('index')
 </script>
+<style>
+#mainWrapper >*{
+transform-style: preserve-3d;
+}
+</style>
