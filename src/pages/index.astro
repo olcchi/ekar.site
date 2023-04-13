@@ -2,8 +2,16 @@
 import DefaultLayout from '@layouts/defaultLayout.astro'
 ---
 
-<DefaultLayout title='home' >
-<main class="h-full">
-<p class="text-4xl font-serif">The quick brown fox jumps over the lazy dog.</p>
-</main>
+<DefaultLayout title='ekar' >
+<article id='mainWrapper' class="w-full">
+    <section id='aboutMe'>
+        <p class="mb-5">Ekar</p>
+        <p></p>
+    </section>
+</article>
 </DefaultLayout>
+
+<script>
+import { gsap } from 'gsap'
+gsap.from('#mainWrapper', { opacity: 0, translateY: -12, duration: 1, delay: 0.2 })
+</script>
