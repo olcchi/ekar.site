@@ -1,11 +1,12 @@
 ---
-import Header from '@components/header.astro'
+import MaskHeader from '@components/maskHeader.astro'
 import Footer from '@components/footer.astro'
 interface Props {
   title?: string;
 }
 const { title } = Astro.props;
 ---
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -14,12 +15,28 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
-    <Header/>
-    <main
-      class="h-auto absolute w-full top-12 flex justify-center defaultDark defaultLight defaultAnimation"
-    >
-      <slot />
+    <MaskHeader />
+    <main class="flex justify-center defaultDark defaultLight defaultAnimation">
+      <article class="min-h-screen defaultLayer flex justify-center relative">
+        <div class="mt-20 mb-20 lg:mt-30 lg:mb-20 w-full">
+          <slot />
+        </div>
+        <Footer />
+      </article>
     </main>
-    <Footer/>
   </body>
 </html>
+
+<style is:global>
+  ::-webkit-scrollbar {
+    @apply dark:bg-dark-8 bg-white w-4;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply dark:bg-dark-2 bg-gray-2 rounded-full border-solid border-5 dark:border-dark-8 border-white;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply dark:bg-dark-1 bg-gray-3,;
+  }
+</style>
