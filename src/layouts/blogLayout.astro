@@ -1,8 +1,14 @@
 ---
 import DefaultLayout from '@layouts/defaultLayout.astro'
+import BackTo from '@components/backTo.astro'
+const { title } = Astro.props
 ---
-<DefaultLayout>
-    <article class="prose mt-20 w-4/5 lg:w-3/4">
-        <slot/>
-    </article>
+
+<DefaultLayout title={title}>
+    <article class="prose w-full">
+        <div class="not-prose">
+            <BackTo backTo="posts" />
+        </div>
+        <slot />
+  </article>
 </DefaultLayout>
