@@ -1,7 +1,18 @@
-import { defineCollection } from 'astro:content'
-import { postsSchema } from './postsSchema'
-const postCollection2022 = defineCollection({ schema: postsSchema })
-const postCollection2023 = defineCollection({ schema: postsSchema })
+import { defineCollection, z } from 'astro:content'
+const postCollection2022 = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    pubDate: z.string(),
+    description: z.string().optional(),
+  }),
+})
+const postCollection2023 = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    pubDate: z.string(),
+    description: z.string().optional(),
+  }),
+})
 
 export const collections = {
   2022: postCollection2022,
