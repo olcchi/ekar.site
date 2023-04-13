@@ -1,0 +1,16 @@
+{
+    "eslint.format.enable": true,
+    "eslint.codeActionsOnSave.rules": null,
+    "prettier.enable": false,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "editor.formatOnSave": true,
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "astro", 
+        "typescript", 
+        "typescriptreact" 
+    ]
+  }
