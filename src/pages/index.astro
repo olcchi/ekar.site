@@ -1,10 +1,9 @@
 ---
 import DefaultLayout from '@layouts/defaultLayout.astro'
-export const prerender = true;
 ---
 
 <DefaultLayout title='ekar' >
-<article id='mainWrapper' class="w-full">
+<article class="w-full">
     <section id='aboutMe'>
         <p class="mb-5">Ekar</p>
     </section>
@@ -22,7 +21,7 @@ import { useAnimation } from '../utils/useAnimation'
 useAnimation('index')
 </script>
 <style>
-#mainWrapper >*{
-transform-style: preserve-3d;
+article >*{
+@apply translate-y-2 opacity-0
 }
 </style>
