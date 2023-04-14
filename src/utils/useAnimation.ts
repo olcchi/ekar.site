@@ -1,5 +1,5 @@
 import { gsap } from 'gsap'
-
+export const prerender = true
 export const useAnimation = (query: 'posts' | 'postsList' | 'index'): void => {
   switch (query) {
     case 'posts':
