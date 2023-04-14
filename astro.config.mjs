@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config'
 import unocss from 'unocss/astro'
-
 import netlify from '@astrojs/netlify/functions'
 
 // https://astro.build/config
