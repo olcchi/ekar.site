@@ -5,11 +5,10 @@ import DefaultLayout from '@layouts/defaultLayout.astro'
 const Posts2022 = await getCollection('2022')
 const Posts2023 = await getCollection('2023')
 const allPosts = [Posts2022, Posts2023]
-export const prerender = true;
 ---
 
 <DefaultLayout>
-  <div class="flex flex-col justify-center">
+  <main class="flex flex-col justify-center">
   <div id='backToWrapper' class="pt-5 pb-5 md:p-5">
       <BackTo backTo="" />
     </div>
@@ -50,8 +49,13 @@ export const prerender = true;
         })
       }
     </div>
-  </div>
+  </main>
 </DefaultLayout>
+
+<script>
+import { useAnimation } from '../../utils/useAnimation'
+useAnimation('postsList')
+</script>
 
 <style>
   #postsWrapper:hover #posts {
@@ -60,9 +64,7 @@ export const prerender = true;
   #postsWrapper:hover #posts:hover {
     @apply defaultDark defaultLight transition-colors ease-in-out duration-100;
   }
+  main >*{
+    @apply translate-y-2 opacity-0
+  }
 </style>
-
-<script >
-import { useAnimation } from '../../utils/useAnimation'
-useAnimation('postsList')
-</script>
