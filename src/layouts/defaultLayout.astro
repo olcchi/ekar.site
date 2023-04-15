@@ -16,9 +16,9 @@ const { title } = Astro.props;
   </head>
   <body class="defaultDark defaultLight">
     <MaskHeader />
-    <main class="flex justify-center defaultDark defaultLight defaultAnimation">
+    <main class="flex justify-center defaultDark defaultLight ">
       <article class="min-h-screen defaultLayer flex justify-center relative">
-        <div class="mt-20 mb-20 lg:mt-30 lg:mb-20 w-full">
+        <div class="mt-20 mb-20 lg:mt-30 lg:mb-20 w-full flex justify-center">
           <slot />
         </div>
         <Footer />
@@ -27,16 +27,31 @@ const { title } = Astro.props;
   </body>
 </html>
 
+<script>
+import { useAnimation } from '../utils/useAnimation'
+useAnimation('posts')
+useAnimation('postsList')
+useAnimation('index')
+</script>
 <style is:global>
   ::-webkit-scrollbar {
-    @apply dark:bg-dark-8 bg-white w-4;
+    @apply dark:bg-dark-8 bg-white w-1 md:w-3;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply dark:bg-dark-2 bg-gray-2 rounded-full border-solid border-5 dark:border-dark-8 border-white;
+    @apply dark:bg-dark-2 bg-gray-2 rounded-full border-solid border-1px md:border-5 dark:border-dark-8 border-white;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply dark:bg-dark-1 bg-gray-3,;
+    @apply dark:bg-dark-1 bg-gray-3;
+  }
+  ::selection{
+    @apply dark:text-black dark:bg-white bg-black text-white;
+  }
+  ::-moz-selection{
+    @apply dark:text-black dark:bg-white bg-black text-white;
+  }
+  ::-webkit-selection{
+    @apply dark:text-black dark:bg-white bg-black text-white;
   }
 </style>
