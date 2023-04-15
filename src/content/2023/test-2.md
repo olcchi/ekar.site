@@ -1,6 +1,6 @@
 ---
 title: Astro
-pubDate: 01-04
+pubDate: 01/04
 slug: my-CustomSlug-4
 ---
 

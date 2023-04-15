@@ -1,6 +1,6 @@
 ---
 title: Astro3
-pubDate: 11-23
+pubDate: 11/23
 slug: my-CustomSlug-212
 ---
 

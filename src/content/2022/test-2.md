@@ -1,6 +1,6 @@
 ---
 title: Astro5
-pubDate: 11-04
+pubDate: 11/04
 slug: my-CustomSlug-32123444
 ---
 

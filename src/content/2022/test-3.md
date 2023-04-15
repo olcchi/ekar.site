@@ -1,6 +1,6 @@
 ---
 title: Astro4
-pubDate: 11-05
+pubDate: 11/05
 slug: my-CustomSlug-32
 ---
 
