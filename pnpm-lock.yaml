@@ -3,13 +3,14 @@ lockfileVersion: 5.4
 specifiers:
   '@evan-yang/eslint-config': ^1.0.9
   '@iconify-json/mdi': ^1.1.50
+  '@iconify-json/ph': ^1.1.5
   '@typescript-eslint/parser': ^5.57.1
   '@unocss/preset-attributify': ^0.50.6
   '@unocss/preset-icons': ^0.50.6
   '@unocss/preset-typography': ^0.51.4
   '@unocss/preset-web-fonts': ^0.50.8
   '@unocss/transformer-directives': ^0.51.4
-  astro: ^2.1.9
+  astro: ^2.3.0
   eslint: ^8.37.0
   eslint-plugin-astro: ^0.26.1
   gsap: ^3.11.5
@@ -17,7 +18,8 @@ specifiers:
   vite: ^4.2.1
 
 dependencies:
-  astro: 2.2.1
+  '@iconify-json/ph': 1.1.5
+  astro: 2.3.0
   gsap: 3.11.5
   vite: 4.2.1
 
@@ -83,13 +85,13 @@ packages:
       vscode-uri: 3.0.7
     dev: false
 
-  /@astrojs/markdown-remark/2.1.3_astro@2.2.1:
-    resolution: {integrity: sha512-Di8Qbit9p7L7eqKklAJmiW9nVD+XMsNHpaNzCLduWjOonDu9fVgEzdjeDrTVCDtgrvkfhpAekuNXrp5+w4F91g==}
+  /@astrojs/markdown-remark/2.1.4_astro@2.3.0:
+    resolution: {integrity: sha512-z5diCcFo2xkBAJ11KySAIKpZZkULZmzUvWsZ2VWIOrR6QrEgEfVl5jTpgPSedx4m+xUPuemlUviOotGB7ItNsQ==}
     peerDependencies:
-      astro: ^2.2.0
+      astro: ^2.3.0
     dependencies:
       '@astrojs/prism': 2.1.1
-      astro: 2.2.1
+      astro: 2.3.0
       github-slugger: 1.5.0
       import-meta-resolve: 2.2.2
       rehype-raw: 6.1.1
@@ -670,9 +672,14 @@ packages:
       '@iconify/types': 2.0.0
     dev: true
 
+  /@iconify-json/ph/1.1.5:
+    resolution: {integrity: sha512-iLXq3nohfGge22gL2tZmQ2WHBKkKkIbGWrkuyC8arckS4PWaONyh4A+uDPtSek9QbYDvi9AE2+NxWkNZhANotA==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: false
+
   /@iconify/types/2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
-    dev: true
 
   /@iconify/utils/2.1.5:
     resolution: {integrity: sha512-6MvDI+I6QMvXn5rK9KQGdpEE4mmLTcuQdLZEiX5N+uZB+vc4Yw9K1OtnOgkl8mp4d9X0UrILREyZgF1NUwUt+Q==}
@@ -1371,8 +1378,8 @@ packages:
       - supports-color
     dev: true
 
-  /astro/2.2.1:
-    resolution: {integrity: sha512-yYPRzh3su38bi3VBCKmYAUBkQSaFQMKFsu8JAVDzFRoGLbskJ/6JkDX2abSB9/iRug8GAKaH/FWxXOTzIsSQ7Q==}
+  /astro/2.3.0:
+    resolution: {integrity: sha512-1t8U6vDHQLT0gw0IXZLtJKDIShCcJwOuh0K1JyPgFwu1famb/ggyvsqp9nxBZIbNV8BcAWDHrJA+Z7hh1oEiWA==}
     engines: {node: '>=16.12.0', npm: '>=6.14.0'}
     hasBin: true
     peerDependencies:
@@ -1383,7 +1390,7 @@ packages:
     dependencies:
       '@astrojs/compiler': 1.3.1
       '@astrojs/language-server': 0.28.3
-      '@astrojs/markdown-remark': 2.1.3_astro@2.2.1
+      '@astrojs/markdown-remark': 2.1.4_astro@2.3.0
       '@astrojs/telemetry': 2.1.0
       '@astrojs/webapi': 2.1.0
       '@babel/core': 7.21.4
