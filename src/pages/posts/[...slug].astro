@@ -12,5 +12,15 @@ const { Content } = await entry.render()
 
 ---
 <PostsLayout title={entry.data.title}>
+  <section class="border-b defaultBorder tran pb-5 pt-5">
+    <p class="text-3xl font-bold ">
+      {entry.data.title}
+    </p>
+    <p class="text-sm text-dark-1 dark:text-gray-4 transition-colors">
+     {`${entry.collection}/${entry.data.pubDate}`}
+    </p>
+  </section>
+  <section class="prose">
     <Content/>
+  </section>
 </PostsLayout>
