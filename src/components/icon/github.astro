@@ -1,0 +1,9 @@
+---
+export interface Props {
+    userName: string
+}
+const { userName } = Astro.props
+---
+<a class="p-2" href={`https://github.com/${userName}`}>
+    <i class="pl-3 pr-3 i-ph-github-logo defaultAnimation text-black dark:text-white text-lg opacity-75 hover:opacity-100 "/>
+</a>
