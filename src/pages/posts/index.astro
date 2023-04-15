@@ -8,16 +8,16 @@ const allPosts = [Posts2022, Posts2023]
 ---
 
 <DefaultLayout>
-  <main class="flex flex-col justify-center">
-  <div id='backToWrapper' class="pt-5 pb-5 md:p-5">
+  <main class="flex flex-col">
+  <div id='backToWrapper' class=" pb-5 ">
       <BackTo backTo="" />
     </div>
-    <div id="postsListWrapper" class="pt-5 pb-5 md:p-5">
+    <div id="postsListWrapper" class="pt-5 pb-5">
       <p class="text-base mb-10 italic font-bold ">Blog</p>
       {
         allPosts.map((postsCollectionOfYear) => {
           return (
-            <div class="pb-2 grid grid-cols-6 border-t defaultBorder ">
+            <div class="grid grid-cols-6 border-t defaultBorder ">
               <p class="col-span-1 text-sm text-gray-4 dark:text-dark-2 italic pt-4 pb-4 mr-20">
                 {postsCollectionOfYear[0].collection}
               </p>
@@ -53,15 +53,15 @@ const allPosts = [Posts2022, Posts2023]
 </DefaultLayout>
 
 <script>
-import { useAnimation } from '../../utils/useAnimation'
-useAnimation('postsList')
+// import { useAnimation } from '../../utils/useAnimation'
+// useAnimation('postsList')
 </script>
 
 <style>
-  #postsWrapper:hover #posts {
+  #postsListWrapper:hover #posts {
     @apply dark:text-dark-2 text-gray-3 transition-colors ease-in-out duration-300;
   }
-  #postsWrapper:hover #posts:hover {
+  #postsListWrapper:hover #posts:hover {
     @apply defaultDark defaultLight transition-colors ease-in-out duration-100;
   }
   main >*{
