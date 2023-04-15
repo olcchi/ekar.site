@@ -1,0 +1,43 @@
+<i
+  class="dark:text-white defaultAnimation text-black text-xl pl-3 pr-3 cursor-pointer opacity-75 hover:opacity-100"
+  id="themeToggle"></i>
+
+<script is:inline>
+const themeToggle = document.getElementById('themeToggle')
+const toggleThemeIcon = () => {
+  themeToggle.classList.toggle(
+    'i-ph-sun',
+    localStorage.getItem('globalTheme') !== 'dark',
+  )
+  themeToggle.classList.toggle(
+    'i-ph-moon',
+    localStorage.getItem('globalTheme') === 'dark',
+  )
+}
+
+const preferTheme = () => {
+  const colorSchema = window.matchMedia('(prefers-color-scheme: dark)')
+  const prefersDark = colorSchema.matches
+  !localStorage.getItem('globalTheme')
+    && localStorage.setItem('globalTheme', prefersDark ? 'dark' : 'light')
+  const setting = localStorage.getItem('globalTheme')
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+  toggleThemeIcon()
+  colorSchema.addEventListener('change', () => {
+    document.documentElement.classList.toggle('dark', colorSchema.matches)
+    localStorage.setItem(
+      'globalTheme',
+      colorSchema.matches ? 'dark' : 'light',
+    )
+    toggleThemeIcon()
+  })
+}
+const toggleTheme = () => {
+  const isDark = document.documentElement.classList.toggle('dark')
+  localStorage.setItem('globalTheme', isDark ? 'dark' : 'light')
+  toggleThemeIcon()
+}
+preferTheme()
+themeToggle.addEventListener('click', toggleTheme)
+</script>
