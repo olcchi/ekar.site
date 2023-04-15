@@ -4,11 +4,11 @@ backTo: string
 }
 const { backTo } = Astro.props
 ---
-<div>
+<main>
     <a href={`/${backTo}`} class="flex items-center cursor-pointer hover:text-gray-2">
         <i class="i-mdi-arrow-left" />
         <p class="ml-1 font-serif font-medium">
-            {backTo === '' ? 'Index' : backTo}
+            {backTo || 'Index'}
         </p>
     </a>
-</div>
+</main>
