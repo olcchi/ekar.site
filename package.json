@@ -13,7 +13,6 @@
   "dependencies": {
     "@iconify-json/ph": "^1.1.5",
     "astro": "^2.3.0",
-    "gsap": "^3.11.5",
     "vite": "^4.2.1"
   },
   "devDependencies": {
