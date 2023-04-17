@@ -1,27 +1,19 @@
 ---
 import DefaultLayout from '@layouts/defaultLayout.astro'
 import BackTo from '@components/backTo.astro'
-const { title } = Astro.props;
+const { title } = Astro.props
+const classList = [
+  'opacity-0', 'animate-slideInUp', 'animate-fill-forwards',
+];
 ---
 
 <DefaultLayout title={title}>
   <main class="w-full">
-    <div id="backToWrapper" class="not-prose">
+    <div id="backToWrapper" class:list={['not-prose animate-delay-0', classList]}>
       <BackTo backTo="posts" />
     </div>
-    <article id="postsWrapper">
+    <article id="postsWrapper" class:list={['animate-delay-150', classList]}>
       <slot />
     </article>
   </main>
 </DefaultLayout>
-
-<script>
-import { useAnimation } from '../utils/useAnimation'
-useAnimation('posts')
-</script>
-
-<style>
-  main >* {
-    @apply translate-y-2 opacity-0;
-  }
-</style>
