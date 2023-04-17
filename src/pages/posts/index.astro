@@ -9,10 +9,10 @@ const allPosts = [Posts2022, Posts2023]
 
 <DefaultLayout>
   <main class="flex flex-col">
-  <div id='backToWrapper' class=" pb-5 ">
+  <div id='backToWrapper' class="pb-5  animate-delay-0">
       <BackTo backTo="" />
     </div>
-    <div id="postsListWrapper" class="pt-5 pb-5">
+    <div id="postsListWrapper" class="pt-5 pb-5 animate-delay-150">
       <p class="text-base mb-10 italic font-bold ">Blog</p>
       {
         allPosts.map((postsCollectionOfYear) => {
@@ -52,11 +52,6 @@ const allPosts = [Posts2022, Posts2023]
   </main>
 </DefaultLayout>
 
-<script>
-// import { useAnimation } from '../../utils/useAnimation'
-// useAnimation('postsList')
-</script>
-
 <style>
   #postsListWrapper:hover #posts {
     @apply dark:text-dark-2 text-gray-3 transition-colors ease-in-out duration-300;
@@ -65,6 +60,6 @@ const allPosts = [Posts2022, Posts2023]
     @apply defaultDark defaultLight transition-colors ease-in-out duration-100;
   }
   main >*{
-    @apply translate-y-2 opacity-0
+    @apply opacity-0 animate-slideInUp animate-fill-forwards;
   }
 </style>
