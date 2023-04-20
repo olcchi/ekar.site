@@ -6,7 +6,7 @@ const { backTo } = Astro.props
 ---
 <main>
     <a href={`/${backTo}`} class:list={['flex items-center cursor-pointer hover:text-gray-2']}>
-        <i class:list={[{ 'i-ph-arrow-left': backTo !== 'Index' }, { 'i-ph-arrow-line-left': backTo === '' }]} />
+        <i class:list={[{ 'i-ph-arrow-up-left': backTo !== '' }, { 'i-ph-arrow-line-left': backTo === '' }]} />
         <p class="ml-1 font-serif font-medium">
             {backTo || 'Index'}
         </p>
