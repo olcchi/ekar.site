@@ -1,44 +1,40 @@
 ---
 import DefaultLayout from '@layouts/defaultLayout.astro'
-const classList = ['opacity-0', 'animate-slideInUp', 'animate-fill-forwards'];
+const classList = ['animate-slideInUp', 'animate-fill-both'];
 ---
 
 <DefaultLayout title="ekar">
   <article class="w-full flex flex-col gap-4">
     <section class:list={['animate-delay-0 ', classList]}>
-      <p class="mb-5">ekar</p>
+      <p class="">ekar</p>
     </section>
+
     <section class:list={['animate-delay-150', classList]}>
       <p class="">
         Somewehre in the beautiful world , oxygn breather, and a human being.
       </p>
     </section>
+
     <section
       class:list={[
         'animate-delay-250 grid gap-4 md:gap-8 grid-cols-3',
         classList,
       ]}
     >
-      <div class="col-start-1 col-span-1 ">
-        <p class="font-bold">
-          1
-        </p>
+      <div class="col-start-1 col-span-1">
+        <p class="">1</p>
         <div>
           Somewehre in the beautiful world , oxygn breather, and a human being.
         </div>
       </div>
-      <div class="col-start-2 col-span-1 ">
-        <p class="font-bold">
-          2
-        </p>
+      <div class="col-start-2 col-span-1">
+        <p class="">2</p>
         <div>
           Somewehre in the beautiful world , oxygn breather, and a human being.
         </div>
       </div>
-      <div class="col-start-3 col-span-1 ">
-        <p class="font-bold">
-          3
-        </p>
+      <div class="col-start-3 col-span-1">
+        <p class="">3</p>
         <div>
           Somewehre in the beautiful world , oxygn breather, and a human being.
         </div>
@@ -46,20 +42,35 @@ const classList = ['opacity-0', 'animate-slideInUp', 'animate-fill-forwards'];
     </section>
     <section class:list={['animate-delay-350', classList]}>
       <p class="">
-        Somewehre in the beautiful world , oxygn breather, and a human being.Somewehre in the beautiful world , oxygn breather, and a human being.Somewehre in the beautiful world , oxygn breather, and a human being.Somewehre in the beautiful world , oxygn breather, and a human being.
+        Somewehre in the beautiful world , oxygn breather, and a human
+        being.Somewehre in the beautiful world , oxygn breather, and a human
+        being.Somewehre in the beautiful world , oxygn breather, and a human
+        being.Somewehre in the beautiful world , oxygn breather, and a human
+        being.
       </p>
     </section>
+
     <section class:list={['animate-delay-450', classList]}>
       <p class="">
-        Somewehre in the beautiful world , oxygn breather, and a human being.Somewehre in the beautiful world , oxygn breather, and a human being.Somewehre in the beautiful world , oxygn breather, and a human being.Somewehre in the beautiful world , oxygn breather, and a human being.Somewehre in the beautiful world , oxygn breather, and a human being.
+        Somewehre in the beautiful world , oxygn breather, and a human
+        being.Somewehre in the beautiful world , oxygn breather, and a human
+        being.Somewehre in the beautiful world , oxygn breather, and a human
+        being.Somewehre in the beautiful world , oxygn breather, and a human
+        being.Somewehre in the beautiful world , oxygn breather, and a human
+        being.
       </p>
     </section>
+
     <section class:list={['animate-delay-550', classList]}>
       <p class="">
-        Somewehre in the beautiful world , oxygn breather, and a human being.Somewehre in the beautiful world , oxygn breather, and a human being.Somewehre in the beautiful world , oxygn breather, and a human being.Somewehre in the beautiful world , oxygn breather, and a human being.
+        Somewehre in the beautiful world , oxygn breather, and a human
+        being.Somewehre in the beautiful world , oxygn breather, and a human
+        being.Somewehre in the beautiful world , oxygn breather, and a human
+        being.Somewehre in the beautiful world , oxygn breather, and a human
+        being.
       </p>
     </section>
-    <a href="/posts" id='mask' class="">posts</a>
+    <a href="/posts" id="mask" class="">posts</a>
   </article>
 </DefaultLayout>
 
@@ -67,5 +78,4 @@ const classList = ['opacity-0', 'animate-slideInUp', 'animate-fill-forwards'];
   /* article > * {
     @apply opacity-0 animate-slideInUp animate-fill-forwards;
   } */
-
 </style>
