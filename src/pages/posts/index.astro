@@ -37,6 +37,7 @@ const allPosts = [Posts2022, Posts2023]
                         'border-t defaultBorder':
                           postsCollectionOfYear[0] !== post,
                       },
+                      { 'border-b defaultBorder': allPosts[allPosts.length - 1][allPosts[allPosts.length - 1].length - 1] === post },
                     ]}
                   >
                     <p>{post.data.title}</p>
