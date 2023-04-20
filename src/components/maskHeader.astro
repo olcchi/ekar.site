@@ -17,9 +17,7 @@ let currentYPostion
 let isDown
 const dynamicNav = () => {
   navWrapper.classList.toggle('opacity-0', isDown)
-  // navWrapper.classList.toggle('-translate-y-10', isDown)
   navWrapper.classList.toggle('opacity-100', !isDown)
-  // navWrapper.classList.toggle('translate-y-0', !isDown)
 }
 window.addEventListener('scroll', () => {
   currentYPostion = window.scrollY
