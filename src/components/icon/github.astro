@@ -4,6 +4,4 @@ export interface Props {
 }
 const { userName } = Astro.props
 ---
-<a target="_blank" href={`https://github.com/${userName}`}>
-    <i class="p-2.5 dark:text-white i-ph-github-logo defaultAnimation text-black md:opacity-60 hover:opacity-100"/>
-</a>
+<a class="dark:text-white i-ph-github-logo-bold defaultAnimation text-lg text-black opacity-60 hover:opacity-100" target="_blank" href={`https://github.com/${userName}`}/>
