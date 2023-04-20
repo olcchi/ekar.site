@@ -1,8 +1,10 @@
 ---
 import { getCollection } from 'astro:content'
-import PostsLayout from '@layouts/postsLayout.astro'
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('2022')
+// const blogEntries = await getCollection('2022')
+  const Posts2022 = await getCollection('2022')
+  const Posts2023 = await getCollection('2023')
+  const blogEntries = [...Posts2022, ...Posts2023]
   return blogEntries.map(entry => ({
     params: { slug: entry.slug }, props: { entry },
   }))
@@ -11,16 +13,6 @@ const { entry } = Astro.props
 const { Content } = await entry.render()
 
 ---
-<PostsLayout title={entry.data.title}>
-  <section class="border-b defaultBorder tran pb-5 pt-5">
-    <p class="text-3xl font-bold ">
-      {entry.data.title}
-    </p>
-    <p class="text-sm text-dark-1 dark:text-gray-4 transition-colors">
-     {`${entry.collection}/${entry.data.pubDate}`}
-    </p>
+  <section>
+    <Content />
   </section>
-  <section class="prose">
-    <Content/>
-  </section>
-</PostsLayout>
