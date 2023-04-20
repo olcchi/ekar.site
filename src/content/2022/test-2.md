@@ -1,11 +1,12 @@
 ---
+layout: ../../layouts/postsLayout.astro
+collection: 2022
 title: Astro5
 pubDate: 11/04
 slug: my-CustomSlug-32123444
 ---
 
-# Astro
-Astro.js是一个基于Web Components的前端框架，它使用了一些现代的Web技术，如ES6模块化、Shadow DOM、CSS变量等，使得开发者可以更加方便地构建可维护、可扩展的Web应用。
+个基于Web Components的前端框架，它使用了一些现代的Web技术，如ES6模块化、Shadow DOM、CSS变量等，使得开发者可以更加方便地构建可维护、可扩展的Web应用。
 在Astro.js中，你可以使用许多不同的动画库来实现动画效果。以下是几个常用的动画库：
 Anime.js：是一个轻量级的JavaScript动画库，可以实现各种复杂的动画效果，如缓动、循环、分组等。
 GSAP（GreenSock Animation Platform）：是一个功能强大的JavaScript动画库，可以实现复杂的动画效果，并具有丰富的插件和工具支持。

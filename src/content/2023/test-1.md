@@ -1,5 +1,7 @@
 ---
+layout: ../../layouts/postsLayout.astro
 title: Astro
+collection: 2022
 pubDate: 11/23
 slug: my-CustomSlug-3
 ---

@@ -1,5 +1,7 @@
 ---
+layout: ../../layouts/postsLayout.astro
 title: Astro2
+collection: 2022
 pubDate: 11/02
 slug: my-CustomSlug-32332ds
 ---

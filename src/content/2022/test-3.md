@@ -1,10 +1,12 @@
 ---
+layout: ../../layouts/postsLayout.astro
 title: Astro4
+collection: 2022
 pubDate: 11/05
 slug: my-CustomSlug-32
 ---
 
-# Astro
+
 Astro.js是一个基于Web Components的前端框架，它使用了一些现代的Web技术，如ES6模块化、Shadow DOM、CSS变量等，使得开发者可以更加方便地构建可维护、可扩展的Web应用。
 在Astro.js中，你可以使用许多不同的动画库来实现动画效果。以下是几个常用的动画库：
 Anime.js：是一个轻量级的JavaScript动画库，可以实现各种复杂的动画效果，如缓动、循环、分组等。
