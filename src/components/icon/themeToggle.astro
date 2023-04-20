@@ -1,5 +1,5 @@
-  <i
-    class="p-2 mr-2 ml-2  dark:text-white  text-black text-xl   cursor-pointer md:opacity-60 hover:opacity-100"
+  <div
+    class=" dark:text-white text-lg text-black cursor-pointer opacity-60 hover:opacity-100"
     id="themeToggle"
     />
 
@@ -7,11 +7,11 @@
 const themeToggle = document.getElementById('themeToggle')
 const toggleThemeIcon = () => {
   themeToggle.classList.toggle(
-    'i-ph-sun',
+    'i-ph-sun-bold',
     localStorage.getItem('globalTheme') !== 'dark',
   )
   themeToggle.classList.toggle(
-    'i-ph-moon',
+    'i-ph-moon-bold',
     localStorage.getItem('globalTheme') === 'dark',
   )
 }
