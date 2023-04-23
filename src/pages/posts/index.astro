@@ -1,66 +1,10 @@
 ---
-import { getCollection } from 'astro:content'
-import BackTo from '@components/backTo.astro'
 import DefaultLayout from '@layouts/defaultLayout.astro'
-const Posts2022 = await getCollection('2022')
-const Posts2023 = await getCollection('2023')
-const allPosts = [Posts2022, Posts2023]
+import Posts from '@components/postsList/postsList.astro'
 ---
 
 <DefaultLayout>
-  <main class="flex flex-col">
-  <div id='backToWrapper' class="pb-5  animate-delay-0">
-      <BackTo backTo="" />
-    </div>
-    <div id="postsListWrapper" class="pt-5 pb-5 animate-delay-150">
-      <p class="text-base mb-10 italic font-bold ">Blog</p>
-      {
-        allPosts.map((postsCollectionOfYear) => {
-          return (
-            <div class="grid grid-cols-6 border-t defaultBorder ">
-              <p class="col-span-1 text-sm text-gray-4 dark:text-dark-2 italic pt-4 pb-4 mr-20">
-                {postsCollectionOfYear[0].collection}
-              </p>
-              {postsCollectionOfYear.map((post) => {
-                return (
-                  <a
-                    id="posts"
-                    href={`/posts/${post.slug}`}
-                    class:list={[
-                      'col-span-5',
-                      'col-start-2',
-                      'flex',
-                      'items-center',
-                      'justify-between',
-                      'p-4',
-                      {
-                        'border-t defaultBorder':
-                          postsCollectionOfYear[0] !== post,
-                      },
-                      { 'border-b defaultBorder': allPosts[allPosts.length - 1][allPosts[allPosts.length - 1].length - 1] === post },
-                    ]}
-                  >
-                    <p>{post.data.title}</p>
-                    <p class="text-gray-4 dark:text-dark-2">{post.data.pubDate}</p>
-                  </a>
-                )
-              })}
-            </div>
-          )
-        })
-      }
-    </div>
+  <main class="flex flex-col font-sans font-medium">
+      <Posts/>
   </main>
 </DefaultLayout>
-
-<style>
-  #postsListWrapper:hover #posts {
-    @apply dark:text-dark-2 text-gray-3 transition-colors ease-in-out duration-300;
-  }
-  #postsListWrapper:hover #posts:hover {
-    @apply defaultDark defaultLight transition-colors ease-in-out duration-100;
-  }
-  main >*{
-    @apply opacity-0 animate-slideInUp animate-fill-forwards;
-  }
-</style>
