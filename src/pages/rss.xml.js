@@ -14,7 +14,6 @@ export async function get(context) {
       title: post.data.title,
       pubDate: post.data.pubDate,
       description: post.data.description,
-      // 这个例子假设所有的文章都被渲染为 `/blog/[slug]` 路由
       link: `/post/${post.slug}/`,
     })),
   })
