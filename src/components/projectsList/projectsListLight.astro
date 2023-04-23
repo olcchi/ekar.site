@@ -1,0 +1,32 @@
+---
+import { projects } from '@components/projectsList/projectList'
+const lightProjects = projects.slice(0, 3);
+---
+<div class="not-prose grid md:grid-cols-2 gap-5">
+    {
+      lightProjects.map((project) => {
+        return (
+          <div id="project" class="flex flex-col gap-2">
+            <div class="flex items-center gap-2">
+              <p class="italic font-sans font-bold">
+                {project.projectName}
+              </p>
+              <div class="flex items-center">
+                <a
+                  target="_blank"
+                  href={project.repoLink}
+                  class=" font-sans opacity-50 hover:opacity-100 i-ph-github-logo block transition-opacity"
+                />
+                <a
+                  target="_blank"
+                  href={project.previewLink}
+                  class=" font-sans opacity-50 hover:opacity-100 i-ph-link block transition-opacity"
+                />
+              </div>
+            </div>
+            <p class="font-sans text-sm">{project.description}</p>
+          </div>
+        )
+      })
+    }
+  </div>

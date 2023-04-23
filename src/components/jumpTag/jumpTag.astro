@@ -1,0 +1,24 @@
+---
+const { pathname } = Astro.url
+const jumpTags = [
+  {
+    tag: 'Projects',
+    path: '/projects',
+    isActive: pathname === '/projects',
+  },
+  {
+    tag: 'Posts',
+    path: '/posts',
+    isActive: pathname === '/posts',
+  },
+]
+---
+<main class="flex gap-5">
+    {
+        jumpTags.map((tag) => {
+          return (
+            <a href={tag.path} class:list={['text-xl mt-10 italic font-bold animate-delay-150 transition-opacity', { 'opacity-10 hover:opacity-100': !tag.isActive }]}>{tag.tag}</a>
+          )
+        })
+    }
+</main>
