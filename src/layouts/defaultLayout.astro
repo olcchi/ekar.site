@@ -21,6 +21,7 @@ const { title } = Astro.props;
     <main class="grid grid-cols-[1fr_min(65ch,90%)_1fr]">
       <article class="min-h-screen relative col-start-2 col-end-3">
         <div class="mt-20 mb-20 lg:mt-25 lg:mb-20 w-full">
+          pathname:  {Astro.url.pathname} --- url:  {Astro.url}---{!['/posts', '/projects'].includes(Astro.url.pathname) ? 'false' : 'true'}
           <div class:list={[{ hidden: !['/posts', '/projects'].includes(Astro.url.pathname) }]}>
               <BackTo backTo=""/>
             <JumpTag />
