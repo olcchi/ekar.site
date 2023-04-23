@@ -23,16 +23,7 @@ export default defineConfig({
         },
       },
     ),
-    presetTypography(
-      {
-        // cssExtend: {
-        //   'code,pre': {
-        //     'white-space': 'pre',
-        //   },
-        // },
-
-      },
-    ),
+    presetTypography(),
   ],
   shortcuts: [
     {
