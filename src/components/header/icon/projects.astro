@@ -1,0 +1,19 @@
+---
+const { pathname } = Astro.url
+const routeActiveStyle
+  = pathname === '/projects' ? 'opacity-100' : 'opacity-60 hover:opacity-100 transition-opacity ease';
+---
+
+<a
+  href="/projects"
+  class:list={[
+    ' text-sm font-sans font-medium  dark:text-white text-black dark:text-white z-40 hidden md:block',
+    routeActiveStyle,
+  ]}>Projects</a
+>
+<a
+  class:list={[
+    'i-ph-asterisk text-lg dark:text-white text-black md:hidden',
+    routeActiveStyle,
+  ]}
+  href="/projects"></a>

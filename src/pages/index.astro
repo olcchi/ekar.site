@@ -1,81 +1,94 @@
 ---
 import DefaultLayout from '@layouts/defaultLayout.astro'
-const classList = ['animate-slideInUp', 'animate-fill-both'];
+import ProjectsLight from '@components/projectsList/projectsListLight.astro'
+import PostsLight from '@components/postsList/postsListLight.astro';
 ---
 
 <DefaultLayout title="ekar">
-  <article class="w-full flex flex-col gap-4">
-    <section class:list={['animate-delay-0 ', classList]}>
-      <p class="">ekar</p>
+  <article class="prose">
+    <section class:list={['animate-delay-0 ']}>
+      <p class="font-bold font-serif text-xl">ekar</p>
     </section>
-
-    <section class:list={['animate-delay-150', classList]}>
-      <p class="">
-        Somewehre in the beautiful world , oxygn breather, and a human being.
+    <section class:list={['animate-delay-150']}>
+      <p>
+        Hey! i'm ekar , from somewhere on the beautiful Earth , oxygen breather
+        , user interface builder, <a
+          class="font-serif italic decoration-none inline-block"
+          target="_blank"
+          href="https://pic.ekar.site"
+        >
+          freelance photographer</a
+        >.
       </p>
     </section>
-
-    <section
-      class:list={[
-        'animate-delay-250 grid gap-4 md:gap-8 grid-cols-3',
-        classList,
-      ]}
-    >
-      <div class="col-start-1 col-span-1">
-        <p class="">1</p>
-        <div>
-          Somewehre in the beautiful world , oxygn breather, and a human being.
-        </div>
-      </div>
-      <div class="col-start-2 col-span-1">
-        <p class="">2</p>
-        <div>
-          Somewehre in the beautiful world , oxygn breather, and a human being.
-        </div>
-      </div>
-      <div class="col-start-3 col-span-1">
-        <p class="">3</p>
-        <div>
-          Somewehre in the beautiful world , oxygn breather, and a human being.
-        </div>
-      </div>
+    <section class="animate-delay-300">
+      <a
+        href="/projects"
+        class="flex items-center gap-2 decoration-none border-none cursor-pointer hover:opacity-30 w-32"
+      >
+        <p id="blockTitle">Projects</p><div class="i-ph-arrow-up-right"></div>
+      </a>
+      <ProjectsLight />
     </section>
-    <section class:list={['animate-delay-350', classList]}>
-      <p class="">
-        Somewehre in the beautiful world , oxygn breather, and a human
-        being.Somewehre in the beautiful world , oxygn breather, and a human
-        being.Somewehre in the beautiful world , oxygn breather, and a human
-        being.Somewehre in the beautiful world , oxygn breather, and a human
-        being.
+    <section class="animate-delay-450">
+      <a
+        href="/posts"
+        class="flex items-center gap-2 decoration-none border-none cursor-pointer hover:opacity-50 w-32"
+      >
+        <p id="blockTitle">Posts</p><div class="i-ph-arrow-up-right"></div>
+      </a>
+      <PostsLight/>
+    </section>
+    <section class:list={['animate-delay-600']}>
+      <p id="blockTitle">Now</p>
+      <p>
+        I am currently in the stage of wild growth when I am first exposed to a
+        new field that I love. Every day, I am busy realizing the ideas that
+        come to mind, accumulating valuable experience and endless interest from
+        both successes and failures, and then using them for more elegant
+        implementation of new ideas.
       </p>
-    </section>
-
-    <section class:list={['animate-delay-450', classList]}>
-      <p class="">
-        Somewehre in the beautiful world , oxygn breather, and a human
-        being.Somewehre in the beautiful world , oxygn breather, and a human
-        being.Somewehre in the beautiful world , oxygn breather, and a human
-        being.Somewehre in the beautiful world , oxygn breather, and a human
-        being.Somewehre in the beautiful world , oxygn breather, and a human
-        being.
+      <p>
+        I find myself attracted to qualities that resonate with me and my
+        aspirations in various forms of graphic design, user interface,
+        interactive animation, sound design, film, literature, and photography.
+        Everything that evokes aesthetics similar to those presented in works
+        such as <a
+          target="_blank"
+          href="https://open.spotify.com/track/4nat4yXmaVsO5Cht7r4lIq?si=475d14ab88a74b96"
+          class="inline font-serif italic decoration-none"
+        >
+          Weight of the World
+        </a> by Suede and the movie <a
+          target="_blank"
+          href="https://www.imdb.com/title/tt0449467/"
+          class="inline decoration-none font-serif italic"
+        >
+          Babel
+        </a> appeals to me.
       </p>
+      <p class="">And stay focused on building elegant user interfaces.</p>
     </section>
-
-    <section class:list={['animate-delay-550', classList]}>
-      <p class="">
-        Somewehre in the beautiful world , oxygn breather, and a human
-        being.Somewehre in the beautiful world , oxygn breather, and a human
-        being.Somewehre in the beautiful world , oxygn breather, and a human
-        being.Somewehre in the beautiful world , oxygn breather, and a human
-        being.
-      </p>
+    <section class:list={['animate-delay-750']}>
+      <p id="blockTitle">Contact</p>
+      <a class="decoration-none w-44" href="">earthb0y@outlook.com</a>
+      <a class="decoration-none w-12" href="">Github</a>
+      <a class="decoration-none w-6" href="">Ins</a>
     </section>
-    <a href="/posts" id="mask" class="">posts</a>
   </article>
 </DefaultLayout>
 
 <style>
-  /* article > * {
-    @apply opacity-0 animate-slideInUp animate-fill-forwards;
-  } */
+  article > * {
+    @apply opacity-0 animate-slideInUp animate-fill-both font-sans font-medium mt-8;
+  }
+  a {
+    @apply block border-b border-gray-3 dark:border-dark-1 hover:border-gray-8 dark:hover:border-gray-3;
+  }
+  #blockTitle {
+    @apply md:text-base font-extrabold italic;
+  }
+  #blockTitle::before {
+    content: ":: ";
+  }
 </style>

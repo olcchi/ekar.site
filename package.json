@@ -26,6 +26,7 @@
     "@unocss/preset-icons": "^0.50.6",
     "@unocss/preset-typography": "^0.51.4",
     "@unocss/preset-web-fonts": "^0.50.8",
+    "@unocss/reset": "^0.51.6",
     "@unocss/transformer-directives": "^0.51.4",
     "eslint": "^8.37.0",
     "eslint-plugin-astro": "^0.26.1",

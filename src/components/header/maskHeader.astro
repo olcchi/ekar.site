@@ -1,18 +1,17 @@
 ---
-import NavBar from '@components/navBar.astro';
+import NavBar from '@components/header/navBar.astro';
 ---
 
 <main
   id="mask"
-  class="fixed -top-1 h-12 flex items-center justify-between w-full z-30 defaultAnimation p-2"
+  class="fixed -top-1 flex items-center justify-between w-full z-30 p-2"
 >
-  <section id="navWrapper" class="w-full defaultAnimation md:opacity-100">
+  <section id="navWrapper" class="w-full transition-opacity  md:opacity-100">
     <NavBar />
   </section>
 </main>
 <script>
 const navWrapper = document.getElementById('navWrapper')!
-let prevYPostion = window.scrollY
 let currentYPostion
 let isDown
 const dynamicNav = () => {
@@ -21,9 +20,8 @@ const dynamicNav = () => {
 }
 window.addEventListener('scroll', () => {
   currentYPostion = window.scrollY
-  isDown = currentYPostion > 30 && currentYPostion > prevYPostion
+  isDown = currentYPostion > 30
   dynamicNav()
-  prevYPostion = currentYPostion
 })
 </script>
 <style>
@@ -33,10 +31,10 @@ window.addEventListener('scroll', () => {
     top: 0;
     left: 0;
     width: 100%;
-    height: 96px;
+    height: 80px;
     -webkit-mask-image: linear-gradient(black, transparent);
     mask-image: linear-gradient(to bottom, black, transparent);
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
 </style>

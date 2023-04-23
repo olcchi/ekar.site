@@ -1,0 +1,11 @@
+---
+export interface Props {
+  userName: string;
+}
+const { userName } = Astro.props;
+---
+
+<a
+  class="dark:text-white i-ph-github-logo text-lg text-black opacity-60 hover:opacity-100 transition-opacity ease"
+  target="_blank"
+  href={`https://github.com/${userName}`}></a>

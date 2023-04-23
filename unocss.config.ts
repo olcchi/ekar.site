@@ -9,6 +9,7 @@ import {
 import transformerDirectives from '@unocss/transformer-directives'
 
 export default defineConfig({
+  
   presets: [
     presetIcons(),
     presetUno(),
@@ -17,6 +18,7 @@ export default defineConfig({
       {
         provider: 'fontshare',
         fonts: {
+          sans: 'Satoshi',
           serif: 'Telma',
         },
       },
@@ -25,16 +27,13 @@ export default defineConfig({
   ],
   shortcuts: [
     {
-      defaultDark: 'dark:bg-dark-800 dark:text-gray-2 transition-colors ease-in-out duration-200',
-      defaultLight: 'bg-white text-black transition-colors ease-in-out duration-200',
-      defaultAnimation: 'transition-all duration-200 ease-in-out',
+      defaultDark: 'dark:bg-black dark:text-gray-2',
+      defaultLight: 'bg-white text-black ',
       defaultBorder: 'dark:border-dark-2 border-gray-2 ',
       defaultLayer: 'w-5/6 lg:w-1/2 xl:w-2/5',
     },
   ],
   transformers: [
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
     transformerDirectives(),
   ],
   theme: {
