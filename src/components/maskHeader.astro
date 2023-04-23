@@ -1,0 +1,42 @@
+---
+import NavBar from '@components/navBar.astro';
+---
+
+<main
+  id="mask"
+  class="fixed -top-1 h-12 flex items-center justify-between w-full z-30 defaultAnimation p-2"
+>
+  <section id="navWrapper" class="w-full defaultAnimation md:opacity-100">
+    <NavBar />
+  </section>
+</main>
+<script>
+const navWrapper = document.getElementById('navWrapper')!
+let prevYPostion = window.scrollY
+let currentYPostion
+let isDown
+const dynamicNav = () => {
+  navWrapper.classList.toggle('opacity-0', isDown)
+  navWrapper.classList.toggle('opacity-100', !isDown)
+}
+window.addEventListener('scroll', () => {
+  currentYPostion = window.scrollY
+  isDown = currentYPostion > 30 && currentYPostion > prevYPostion
+  dynamicNav()
+  prevYPostion = currentYPostion
+})
+</script>
+<style>
+  #mask::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 96px;
+    -webkit-mask-image: linear-gradient(black, transparent);
+    mask-image: linear-gradient(to bottom, black, transparent);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+  }
+</style>

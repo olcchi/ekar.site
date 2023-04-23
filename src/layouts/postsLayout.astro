@@ -1,0 +1,30 @@
+---
+import DefaultLayout from '@layouts/defaultLayout.astro'
+import BackTo from '@components/backTo.astro'
+const { title, pubDate, minutesRead, collection } = Astro.props.frontmatter
+
+const classList = ['animate-slideInUp', 'animate-fill-both']
+---
+
+<DefaultLayout title={title}>
+  <main>
+    <div
+      class:list={['not-prose animate-delay-0', classList]}
+    >
+      <BackTo backTo="posts" />
+    </div>
+    <article class:list={['animate-delay-150', classList]}>
+      <section class="border-b defaultBorder tran pb-5 pt-5">
+        <p class="text-3xl font-bold">
+          {title}
+        </p>
+        <p class="text-sm text-dark-1 dark:text-gray-4 transition-colors">
+          {`${collection}/${pubDate}`} · {minutesRead}
+        </p>
+      </section>
+      <div class="prose">
+        <slot />
+      </div>
+    </article>
+  </main>
+</DefaultLayout>

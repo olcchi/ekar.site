@@ -1,0 +1,18 @@
+---
+import Ekar from '@components/icon/ekar.astro'
+import ThemeToggle from '@components/icon/themeToggle.astro'
+import Github from '@components/icon/github.astro'
+import RSS from '@components/icon/rss.astro'
+import Posts from '@components/icon/posts.astro'
+import Project from '@components/icon/project.astro'
+---
+<nav class="h-full flex items-center justify-between w-full pr-5 pl-5 pt-2 pb-2 mt-5">
+    <Ekar />
+    <section class="grid grid-flow-col justify-items-stretch gap-6 place-items-center z-40">
+      <Project/>
+      <Posts />
+      <RSS />
+      <Github userName="Ekarmore"/>
+      <ThemeToggle />
+    </section>
+</nav>

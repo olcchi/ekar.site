@@ -1,0 +1,20 @@
+---
+import DefaultLayout from '@layouts/defaultLayout.astro'
+import BackTo from '@components/backTo.astro'
+---
+
+<DefaultLayout title="404 not found">
+<main class="flex flex-col ">
+        <div class="mt-40 border-b defaultBorder pb-2 mb-2">
+            <p class="text-base">404 Not Found</p>
+            <p>page:「<span class="text-base font-serif">{Astro.url.pathname}</span>」does not seem to exist</p>
+        </div>
+        <BackTo backTo="" />
+</main>
+</DefaultLayout>
+
+<style>
+main >*{
+
+}
+</style>
