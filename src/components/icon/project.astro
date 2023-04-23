@@ -1,9 +1,0 @@
----
-const { pathname } = Astro.url
-const routeActiveStyle = pathname === '/project' ? 'opacity-100' : 'opacity-60'
----
-<a
-  href="/project"
-  class:list={[' text-base  dark:text-white text-black dark:text-white defaultAnimation z-40', routeActiveStyle]}
-  >Project</a
->
