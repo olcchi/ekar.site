@@ -1,7 +1,7 @@
 ---
 import DefaultLayout from '@layouts/defaultLayout.astro'
-import ProjectsLight from '@components/projectsList/projectsListLight.astro'
-import PostsLight from '@components/postsList/postsListLight.astro'
+import ProjectsListLight from '@components/projectsList/projectsListLight.astro'
+import PostsListLight from '@components/postsList/postsListLight.astro'
 const classList = ['opacity-0', 'animate-slideInUp', 'animate-fill-both', 'font-sans', 'font-medium', 'mt-8']
 ---
 
@@ -12,7 +12,7 @@ const classList = ['opacity-0', 'animate-slideInUp', 'animate-fill-both', 'font-
     </section>
     <section class:list={['animate-delay-150', classList]}>
       <p>
-        Hey! i'm ekar , from somewhere on the beautiful Earth , oxygen breather
+        Hey! i'm ekar, from somewhere on the beautiful Earth, oxygen breather
         , user interface builder, <a
           class="font-serif italic decoration-none inline-block"
           target="_blank"
@@ -23,22 +23,10 @@ const classList = ['opacity-0', 'animate-slideInUp', 'animate-fill-both', 'font-
       </p>
     </section>
     <section class:list={['animate-delay-300', classList]}>
-      <a
-        href="/projects"
-        class="flex items-center gap-2 decoration-none border-none cursor-pointer hover:opacity-30 w-32"
-      >
-        <p id="blockTitle">Projects</p><div class="i-ph-arrow-up-right"></div>
-      </a>
-      <ProjectsLight />
+      <ProjectsListLight />
     </section>
     <section class:list={['animate-delay-450', classList]}>
-      <a
-        href="/posts"
-        class="flex items-center gap-2 decoration-none border-none cursor-pointer hover:opacity-50 w-32"
-      >
-        <p id="blockTitle">Posts</p><div class="i-ph-arrow-up-right"></div>
-      </a>
-      <PostsLight/>
+      <PostsListLight/>
     </section>
     <section class:list={['animate-delay-600', classList]}>
       <p id="blockTitle">Now</p>
@@ -68,20 +56,20 @@ const classList = ['opacity-0', 'animate-slideInUp', 'animate-fill-both', 'font-
           Babel
         </a> appeals to me.
       </p>
-      <p class="">And stay focused on building elegant user interfaces.</p>
+      <p class="">Of course, the most important thing is to <span class="font-serif">stay agile and build well-designed user interfaces.</span></p>
     </section>
     <section class:list={['animate-delay-750', classList]}>
       <p id="blockTitle">Contact</p>
-      <a class="decoration-none w-44" href="">earthb0y@outlook.com</a>
-      <a class="decoration-none w-12" href="">Github</a>
-      <a class="decoration-none w-6" href="">Ins</a>
+      <a class="decoration-none max-w-max" target="_blank" href="mailto:Earthb0y@outlook.com">Earthb0y@outlook.com</a>
+      <a class="decoration-none max-w-max" target="_blank" href="https://github.com/Ekarmore">Github</a>
+      <a class="decoration-none max-w-max" target="_blank" href="https://pic.ekar.site">Photography Site</a>
     </section>
   </article>
 </DefaultLayout>
 
-<style>
-  a {
-    @apply block border-b border-gray-3 dark:border-dark-1 hover:border-gray-8 dark:hover:border-gray-3;
+<style is:global>
+ article a {
+    @apply defaultLink;
   }
   #blockTitle {
     @apply md:text-base font-extrabold italic;
