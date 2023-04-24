@@ -2,6 +2,7 @@
 import DefaultLayout from '@layouts/defaultLayout.astro'
 import ProjectsListLight from '@components/projectsList/projectsListLight.astro'
 import PostsListLight from '@components/postsList/postsListLight.astro'
+import Link from '@components/link.astro'
 const classList = ['opacity-0', 'animate-slideInUp', 'animate-fill-both', 'font-sans', 'font-medium', 'mt-8']
 ---
 
@@ -59,18 +60,12 @@ const classList = ['opacity-0', 'animate-slideInUp', 'animate-fill-both', 'font-
       <p class="">Of course, the most important thing is to <span class="font-serif">stay agile and build well-designed user interfaces.</span></p>
     </section>
     <section class:list={['animate-delay-750', classList]}>
-      <p id="blockTitle">Contact</p>
-      <a class=" max-w-max" target="_blank" href="mailto:Earthb0y@outlook.com">Earthb0y@outlook.com</a><br/>
-      <a class=" max-w-max" target="_blank" href="https://github.com/Ekarmore">Github</a><br/>
-      <a class=" max-w-max" target="_blank" href="https://pic.ekar.site">Photography Site</a>
+      <Link/>
     </section>
   </article>
 </DefaultLayout>
 
 <style is:global>
- article a {
-    @apply defaultLink;
-  }
   #blockTitle {
     @apply md:text-base font-extrabold italic;
   }
