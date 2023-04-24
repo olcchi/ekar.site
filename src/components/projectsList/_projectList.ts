@@ -23,7 +23,7 @@ export const projects: Projects<projectsType> = [
   {
     projectName: 'ekar.site',
     description: 'The personal website you are browsing at this moment.',
-    repoLink: '',
+    repoLink: 'https://github.com/Ekarmore/ekar.site',
     previewLink: 'https://ekar.site',
   },
 ]
