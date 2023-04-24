@@ -3,7 +3,14 @@ import DefaultLayout from '@layouts/defaultLayout.astro'
 import ProjectsListLight from '@components/projectsList/projectsListLight.astro'
 import PostsListLight from '@components/postsList/postsListLight.astro'
 import Link from '@components/link.astro'
-const classList = ['opacity-0', 'animate-slideInUp', 'animate-fill-both', 'font-sans', 'font-medium', 'mt-8']
+const classList = [
+  'opacity-0',
+  'animate-slideInUp',
+  'animate-fill-both',
+  'font-sans',
+  'font-medium',
+  'mt-8',
+];
 ---
 
 <DefaultLayout title="ekar">
@@ -13,8 +20,11 @@ const classList = ['opacity-0', 'animate-slideInUp', 'animate-fill-both', 'font-
     </section>
     <section class:list={['animate-delay-150', classList]}>
       <p>
-        Hey! i'm ekar, from somewhere on the beautiful Earth, oxygen breather
-        , user interface builder, <a
+        Hey! i'm ekar, from somewhere on the beautiful Earth, oxygen breather ,
+        user
+        <span class="font-serif italic decoration-none">interface builder</span
+        >,
+        <a
           class="font-serif italic decoration-none inline-block"
           target="_blank"
           href="https://pic.ekar.site"
@@ -27,7 +37,7 @@ const classList = ['opacity-0', 'animate-slideInUp', 'animate-fill-both', 'font-
       <ProjectsListLight />
     </section>
     <section class:list={['animate-delay-450', classList]}>
-      <PostsListLight/>
+      <PostsListLight />
     </section>
     <section class:list={['animate-delay-600', classList]}>
       <p id="blockTitle">Now</p>
@@ -57,15 +67,21 @@ const classList = ['opacity-0', 'animate-slideInUp', 'animate-fill-both', 'font-
           Babel
         </a> appeals to me.
       </p>
-      <p class="">Of course, the most important thing is to <span class="font-serif">stay agile and build well-designed user interfaces.</span></p>
+      <p class="">
+        Of course, the most important thing is to <span class="font-serif"
+          >stay agile and build well-designed user interfaces.</span>
+      </p>
     </section>
     <section class:list={['animate-delay-750', classList]}>
-      <Link/>
+      <Link />
     </section>
   </article>
 </DefaultLayout>
 
-<style is:global>
+<style>
+  article a {
+    @apply defaultLink;
+  }
   #blockTitle {
     @apply md:text-base font-extrabold italic;
   }
