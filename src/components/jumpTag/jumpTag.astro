@@ -18,7 +18,7 @@ const jumpTags = [
     {
         jumpTags.map((tag) => {
           return (
-            <a href={tag.path} class:list={['text-xl mt-10 italic font-bold animate-delay-150 transition-opacity', { 'opacity-10 hover:opacity-100': !tag.isActive }]}>{tag.tag}</a>
+            <a href={tag.path} class:list={['text-xl mt-10 italic font-bold animate-delay-150 transition-opacity', { 'opacity-10 hover:opacity-50': !tag.isActive }]}>{tag.tag}</a>
           )
         })
     }
