@@ -1,15 +1,16 @@
 ---
 const { pathname } = Astro.url
+const pathName = pathname.replace(/\//g, '')
 const jumpTags = [
   {
     tag: 'Projects',
     path: '/projects/',
-    isActive: pathname === '/projects/',
+    isActive: pathName === 'projects',
   },
   {
     tag: 'Posts',
     path: '/posts/',
-    isActive: pathname === '/posts/',
+    isActive: pathName === 'posts',
   },
 ]
 ---

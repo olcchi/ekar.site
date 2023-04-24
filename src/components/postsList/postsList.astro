@@ -1,5 +1,5 @@
 ---
-import { allPosts } from './postsCollection';
+import { allPosts } from './_postsCollection';
 ---
 
 <main id="postsListWrapper" class="pt-5">
@@ -46,9 +46,9 @@ import { allPosts } from './postsCollection';
 
 <style>
   #postsListWrapper:hover #posts {
-    @apply dark:text-dark-2 text-gray-3 transition-colors ease-in-out duration-300;
+    @apply md:dark:text-dark-2 md:text-gray-3 md:transition-colors md:ease-in-out md:duration-300;
   }
   #postsListWrapper:hover #posts:hover {
-    @apply defaultDark defaultLight transition-colors ease-in-out duration-100;
+    @apply md:defaultDark md:defaultLight md:transition-colors md:ease-in-out md:duration-100;
   }
 </style>

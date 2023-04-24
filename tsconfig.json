@@ -1,5 +1,4 @@
 {
-  // "extends": "astro/tsconfigs/strict",
   "extends": "astro/tsconfigs/base",
   "compilerOptions": {
     "strictNullChecks": true,
@@ -15,6 +14,9 @@
       ],
       "@assets/*": [
         "src/assets/*"
+      ],
+      "@scripts/*": [
+        "src/scripts/*"
       ]
     }
   }

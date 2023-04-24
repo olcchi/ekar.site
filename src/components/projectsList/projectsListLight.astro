@@ -1,32 +1,40 @@
 ---
-import { projects } from '@components/projectsList/projectList'
+import { projects } from '@components/projectsList/_projectList'
 const lightProjects = projects.slice(0, 3);
 ---
-<div class="not-prose grid md:grid-cols-2 gap-5">
-    {
-      lightProjects.map((project) => {
-        return (
-          <div id="project" class="flex flex-col gap-2">
-            <div class="flex items-center gap-2">
-              <p class="italic font-sans font-bold">
-                {project.projectName}
-              </p>
-              <div class="flex items-center">
-                <a
-                  target="_blank"
-                  href={project.repoLink}
-                  class=" font-sans opacity-50 hover:opacity-100 i-ph-github-logo block transition-opacity"
-                />
-                <a
-                  target="_blank"
-                  href={project.previewLink}
-                  class=" font-sans opacity-50 hover:opacity-100 i-ph-link block transition-opacity"
-                />
+<main>
+  <a
+  href="/projects"
+  class="flex items-center gap-2 decoration-none border-none cursor-pointer hover:opacity-30 w-32"
+  >
+  <p id="blockTitle">Projects</p><div class="i-ph-arrow-up-right"></div>
+  </a>
+  <div class="not-prose grid md:grid-cols-2 gap-5">
+      {
+        lightProjects.map((project) => {
+          return (
+            <div id="project" class="flex flex-col gap-2">
+              <div class="flex items-center gap-2">
+                <a target="_blank" href="project.repoLink" class="italic font-sans font-bold md:border-none">
+                  {project.projectName}
+                </a>
+                <div class="flex items-center">
+                  <a
+                    target="_blank"
+                    href={project.repoLink}
+                    class=" font-sans opacity-50 hover:opacity-100 i-ph-github-logo block transition-opacity"
+                  />
+                  <a
+                    target="_blank"
+                    href={project.previewLink}
+                    class=" font-sans opacity-50 hover:opacity-100 i-ph-link block transition-opacity"
+                  />
+                </div>
               </div>
+              <p class="font-sans text-sm">{project.description}</p>
             </div>
-            <p class="font-sans text-sm">{project.description}</p>
-          </div>
-        )
-      })
-    }
-  </div>
+          )
+        })
+      }
+    </div>
+</main>
