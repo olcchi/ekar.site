@@ -1,7 +1,6 @@
 ---
 const { pathname } = Astro.url
-const routeActiveStyle
-  = pathname === '/projects' ? 'opacity-100' : 'opacity-60 hover:opacity-100 transition-opacity ease';
+const routeActiveStyle = pathname.includes('projects') ? 'opacity-100' : 'opacity-60 hover:opacity-100 transition-opacity ease';
 ---
 
 <a
