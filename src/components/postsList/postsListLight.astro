@@ -15,7 +15,7 @@ const postsLight = allPosts.flat().slice(0, 3);
         return (
           <>
           <div class="flex flex-col gap-2">
-              <a href={`/posts/${posts.slug}`} class="decoration-none max-w-min font-bold italic w-min border-b  border-gray-3 dark:border-dark-1 hover:border-gray-8 dark:hover:border-gray-3">
+              <a href={`/posts/${posts.slug}`} class="decoration-none min-w-max font-bold italic w-min border-b  border-gray-3 dark:border-dark-1 hover:border-gray-8 dark:hover:border-gray-3">
                 {posts.data.title}
               </a>
               <p class="text-sm">{posts.data.description}</p>
