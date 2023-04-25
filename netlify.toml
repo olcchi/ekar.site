@@ -4,5 +4,5 @@
 
 [[redirects]]
   from = "/gallery"
-  to = "https://docs.netlify.com/routing/redirects/#app"
+  to = "https://gallery.ekar.site"
   force = true
