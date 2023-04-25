@@ -4,4 +4,5 @@
 
 [[redirects]]
   from = "/gallery"
-  to = "/blog"
+  to = "https://docs.netlify.com/routing/redirects/#app"
+  force = true
