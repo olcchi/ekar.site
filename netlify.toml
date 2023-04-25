@@ -3,5 +3,5 @@
   publish = "dist"
 
 [[redirects]]
-  from = '/gallery'
-  to = '/blog'
+  from = "/gallery"
+  to = "/blog"
