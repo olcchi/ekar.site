@@ -3,6 +3,7 @@ import MaskHeader from '@components/header/maskHeader.astro'
 import Footer from '@components/footer.astro'
 import BackTo from '@components/backTo.astro'
 import JumpTag from '@components/jumpTag/jumpTag.astro'
+import '../styles/globalStyle.css'
 interface Props {
   title?: string;
 }
@@ -42,7 +43,7 @@ const { title } = Astro.props;
 </html>
 
 <style is:global>
-  ::-webkit-scrollbar {
+  /* ::-webkit-scrollbar {
     @apply dark:bg-black bg-white w-1 h-0 md:w-3;
   }
 
@@ -61,5 +62,5 @@ const { title } = Astro.props;
   }
   ::-webkit-selection {
     @apply dark:text-black dark:bg-white bg-black text-white;
-  }
+  } */
 </style>
