@@ -1,0 +1,20 @@
+::-webkit-scrollbar {
+    @apply dark:bg-black bg-white w-1 h-0 md:w-3;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply dark:bg-dark-2 bg-gray-2 rounded-full border-solid border-1px md:border-5 dark:border-black border-white;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply dark:bg-dark-1 bg-gray-3;
+  }
+  ::selection {
+    @apply dark:text-black dark:bg-white bg-black text-white;
+  }
+  ::-moz-selection {
+    @apply dark:text-black dark:bg-white bg-black text-white;
+  }
+  ::-webkit-selection {
+    @apply dark:text-black dark:bg-white bg-black text-white;
+  }
