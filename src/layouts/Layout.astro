@@ -2,7 +2,7 @@
 import MaskHeader from '@components/header/headerMask.astro'
 import Footer from '@components/footer.astro'
 import BackTo from '@components/backTo.astro'
-import JumpTag from '@components/tab.astro'
+import Tab from '@components/tab.astro'
 import '../styles/globalStyle.css'
 interface Props {
   title?: string;
@@ -19,7 +19,7 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.svg">
   </head>
-  <body class="defaultDark defaultLight">
+  <body class="themeBase">
     <MaskHeader />
     <main class="grid grid-cols-[1fr_min(65ch,90%)_1fr]">
       <article class="min-h-screen relative col-start-2 col-end-3">
@@ -32,7 +32,7 @@ const { title } = Astro.props;
             ]}
           >
             <BackTo backTo="" />
-            <JumpTag />
+            <Tab />
           </div>
           <slot />
         </div>

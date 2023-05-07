@@ -6,7 +6,7 @@ import { allPosts } from './_postsCollection';
   {
     allPosts.map((postsCollectionOfYear) => {
       return (
-        <div class="grid grid-cols-6 border-t defaultBorder ">
+        <div class="grid grid-cols-6 border-t borderBase ">
           <p class="col-span-1 text-sm text-gray-4 dark:text-dark-2 italic pt-4 pb-4 mr-20">
             {postsCollectionOfYear[0].collection}
           </p>
@@ -23,7 +23,7 @@ import { allPosts } from './_postsCollection';
                   'justify-between',
                   'p-4',
                   {
-                    'border-t defaultBorder': postsCollectionOfYear[0] !== post,
+                    'border-t borderBase': postsCollectionOfYear[0] !== post,
                   },
                 ]}
               >
