@@ -1,12 +1,11 @@
 ---
 import { getCollection } from 'astro:content'
 export async function getStaticPaths() {
-// const blogEntries = await getCollection('2022')
   const Posts2022 = await getCollection('2022')
   const Posts2023 = await getCollection('2023')
   const blogEntries = [...Posts2022, ...Posts2023]
   return blogEntries.map(entry => ({
-    params: { slug: entry.slug }, props: { entry },
+    params: { post: entry.slug }, props: { entry },
   }))
 }
 const { entry } = Astro.props

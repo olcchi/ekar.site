@@ -1,16 +1,10 @@
 ---
 import Projects from '@components/projectsList/projectsList.astro'
-import DefaultLayout from '@layouts/defaultLayout.astro'
+import Layout from '@layouts/Layout.astro'
 ---
 
-<DefaultLayout title='Projects'>
+<Layout title='Projects'>
   <main class="flex flex-col font-sans font-medium">
       <Projects/>
   </main>
-</DefaultLayout>
-
-<style>
-  /* main > * {
-    @apply opacity-0 animate-slideInUp animate-fill-forwards;
-  } */
-</style>
+</Layout>

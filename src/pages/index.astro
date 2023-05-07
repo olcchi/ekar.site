@@ -1,8 +1,8 @@
 ---
-import DefaultLayout from '@layouts/defaultLayout.astro'
+import Layout from '@layouts/Layout.astro'
 import ProjectsListLight from '@components/projectsList/projectsListLight.astro'
 import PostsListLight from '@components/postsList/postsListLight.astro'
-import Link from '@components/link.astro'
+import Link from '@components/contactLink.astro'
 const classList = [
   'opacity-0',
   'animate-slideInUp',
@@ -13,7 +13,7 @@ const classList = [
 ];
 ---
 
-<DefaultLayout title="ekar">
+<Layout title="ekar">
   <article class="prose">
     <section class:list={['animate-delay-50 ', classList]}>
       <p class="font-bold font-serif text-xl">ekar</p>
@@ -21,7 +21,8 @@ const classList = [
     <section class:list={['animate-delay-150', classList]}>
       <p>
         Hey! i'm ekar, from somewhere on the beautiful Earth, oxygen breather,
-        <span class="font-serif italic decoration-none">user interface builder</span
+        <span class="font-serif italic decoration-none"
+          >user interface builder</span
         >,
         <a
           class="font-serif italic decoration-none inline-block"
@@ -68,14 +69,15 @@ const classList = [
       </p>
       <p class="">
         Of course, the most important thing is to <span class="font-serif"
-          >stay agile and build well-designed user interfaces.</span>
+          >stay agile and build well-designed user interfaces.</span
+        >
       </p>
     </section>
     <section class:list={['animate-delay-750', classList]}>
       <Link />
     </section>
   </article>
-</DefaultLayout>
+</Layout>
 
 <style is:global>
   article a {
