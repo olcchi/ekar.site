@@ -1,9 +1,9 @@
 ---
-import DefaultLayout from '@layouts/defaultLayout.astro'
+import Layout from '@layouts/Layout.astro'
 const { title, pubDate, minutesRead, collection } = Astro.props.frontmatter
 ---
 
-<DefaultLayout title={title}>
+<Layout title={title}>
   <main>
     <article>
       <section class="border-b defaultBorder pb-5 pt-5">
@@ -19,4 +19,4 @@ const { title, pubDate, minutesRead, collection } = Astro.props.frontmatter
       </div>
     </article>
   </main>
-</DefaultLayout>
+</Layout>
