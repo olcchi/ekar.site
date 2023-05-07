@@ -5,7 +5,7 @@ import PostsListLight from '@components/postsList/postsListLight.astro'
 import Link from '@components/contactLink.astro'
 const classList = [
   'opacity-0',
-  'animate-slideInUp',
+  'animate-slideUp',
   'animate-fill-both',
   'font-sans',
   'font-medium',
@@ -81,7 +81,7 @@ const classList = [
 
 <style is:global>
   article a {
-    @apply defaultLink;
+    @apply linkBase;
   }
   #blockTitle {
     @apply md:text-base font-extrabold italic;
