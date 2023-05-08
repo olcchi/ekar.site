@@ -9,7 +9,6 @@ import {
 import transformerDirectives from '@unocss/transformer-directives'
 
 export default defineConfig({
-
   presets: [
     presetIcons(),
     presetUno(),
