@@ -1,6 +1,6 @@
 ---
 import { projects } from '@components/projectsList/_projectList'
-const lightProjects = projects.slice(0, 3);
+const projectsListLitght = projects.slice(0, 3);
 ---
 <main>
   <a
@@ -11,7 +11,7 @@ const lightProjects = projects.slice(0, 3);
   </a>
   <div class="not-prose grid md:grid-cols-2 gap-5">
       {
-        lightProjects.map((project) => {
+        projectsListLitght.map((project) => {
           return (
             <div id="project" class="flex flex-col gap-2">
               <div class="flex items-center gap-2">

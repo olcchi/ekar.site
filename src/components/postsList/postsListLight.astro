@@ -1,6 +1,6 @@
 ---
 import { allPosts } from './_postsCollection'
-const postsLight = allPosts.flat().slice(0, 3);
+const postsListLight = allPosts.flat().slice(0, 3);
 ---
 <main>
   <a
@@ -11,7 +11,7 @@ const postsLight = allPosts.flat().slice(0, 3);
   </a>
   <div class="not-prose grid grid-cols-2 gap-5">
     {
-      postsLight.map((posts) => {
+      postsListLight.map((posts) => {
         return (
           <>
           <div class="flex flex-col gap-2">
