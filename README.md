@@ -2,7 +2,7 @@
 
  Build fully with [Astro](https://astro.build/) components and integrate a blog feature that allows you to write articles using Markdown.
 
- 💡 Inspired by [Paco Coursey](https://paco.me)
+##### 💡 *Inspired by [Paco Coursey](https://paco.me)*
 
 ### ***Try It Now***  
 
@@ -33,6 +33,6 @@ $ pnpm run dev
 $ pnpm run build
 ```
 
-### LICENSE
+### ***LICENSE***
  The website source code follows the [MIT](./LICENSE) license,  
  articles, images, and audio on the website follows the [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) license.
