@@ -14,9 +14,9 @@ Create a new repository using this template.
 
 [Create a repository](https://github.com/Ekarmore/ekar.site/generate)
 
-### ***Install dependencies***  
+### ***CLI Commands***  
 
-> ⚠️ This project uses pnpm for management
+> 📦 This project uses pnpm for management
 
 > 📖 For more information about CLI commands, please refer to the official [documentation](https://docs.astro.build/zh-cn/reference/cli-reference/) of Astro.
 
