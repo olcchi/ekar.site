@@ -9,6 +9,12 @@ type Projects<T> = T[]
 
 export const projects: Projects<projectsType> = [
   {
+    projectName: 'Gallery',
+    description: 'My personal gallery',
+    repoLink: 'https://github.com/Ekarmore/Gallery',
+    previewLink: 'https://gallery.ekar.site',
+  },
+  {
     projectName: 'Hug',
     description: 'Use ChatGPT to relieve your frustration.',
     repoLink: 'https://github.com/Ekarmore/hug',
