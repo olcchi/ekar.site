@@ -10,7 +10,7 @@ type Projects<T> = T[]
 export const projects: Projects<projectsType> = [
   {
     projectName: 'Gallery',
-    description: 'My personal gallery',
+    description: 'My personal gallery.',
     repoLink: 'https://github.com/Ekarmore/Gallery',
     previewLink: 'https://gallery.ekar.site',
   },
