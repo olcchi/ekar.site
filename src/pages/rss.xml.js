@@ -6,7 +6,7 @@ export async function get(context) {
   const collection2023 = await getCollection('2023')
   const posts = [...collection2022, ...collection2023]
   return rss({
-    title: 'ekar',
+    title: 'yi',
     description: 'posts',
     site: context.site,
     items: posts.map(post => ({
