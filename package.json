@@ -1,7 +1,7 @@
 {
   "name": "ekar.site",
   "version": "0.0.1",
-  "description": "ekar's personal site",
+  "description": "yi's personal site",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
