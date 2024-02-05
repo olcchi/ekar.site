@@ -8,11 +8,11 @@
 
 One-click to build and deploy your personal website using this template on Netlify.  
 
- [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/Ekarmore/ekar.site)
+ [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/olcchi/ekar.site)
 
 Create a new repository using this template.  
 
-[Create a repository](https://github.com/Ekarmore/ekar.site/generate)
+[Create a repository](https://github.com/olcchi/ekar.site/generate)
 
 ### ***CLI Commands***  
 
