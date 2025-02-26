@@ -1,24 +1,24 @@
 ---
-import Layout from '@layouts/Layout.astro'
-import ProjectsListLight from '@components/projectsList/projectsListLight.astro'
-import PostsListLight from '@components/postsList/postsListLight.astro'
-import Link from '@components/contactLink.astro'
+import Layout from "@layouts/Layout.astro";
+import ProjectsListLight from "@components/projectsList/projectsListLight.astro";
+import PostsListLight from "@components/postsList/postsListLight.astro";
+import Link from "@components/contactLink.astro";
 const classList = [
-  'opacity-0',
-  'animate-slideUp',
-  'animate-fill-both',
-  'font-sans',
-  'font-medium',
-  'mt-8',
+  "opacity-0",
+  "animate-slideUp",
+  "animate-fill-both",
+  "font-sans",
+  "font-medium",
+  "mt-8",
 ];
 ---
 
 <Layout title="yi">
-  <article class="prose">
-    <section class:list={['animate-delay-50 ', classList]}>
+  <article class="prose mainContainer">
+    <section class:list={classList}>
       <p class="font-bold font-serif text-xl">yi</p>
     </section>
-    <section class:list={['animate-delay-150', classList]}>
+    <section class:list={classList}>
       <p>
         Hey! i'm yi, from somewhere on the beautiful Earth, oxygen breather,
         <span class="font-serif italic decoration-none"
@@ -33,13 +33,13 @@ const classList = [
         >.
       </p>
     </section>
-    <section class:list={['animate-delay-300', classList]}>
+    <section class:list={classList}>
       <ProjectsListLight />
     </section>
-    <section class:list={['animate-delay-450', classList]}>
+    <section class:list={[classList]}>
       <PostsListLight />
     </section>
-    <section class:list={['animate-delay-600', classList]}>
+    <section class:list={[classList]}>
       <p id="blockTitle">Now</p>
       <p>
         I am currently in the stage of wild growth when I am first exposed to a
@@ -73,11 +73,22 @@ const classList = [
         >
       </p>
     </section>
-    <section class:list={['animate-delay-750', classList]}>
+    <section class:list={[classList]}>
       <Link />
     </section>
   </article>
 </Layout>
+
+<script>
+  const sections: NodeListOf<HTMLElement> = document.querySelectorAll(
+    "article.mainContainer section"
+  );
+  let delay = 50;
+  sections.forEach((section, index) => {
+    section.style.animationDelay = `${delay}ms`;
+    delay += (index + 1) * 100;
+  });
+</script>
 
 <style is:global>
   article a {
