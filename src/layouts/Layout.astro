@@ -1,5 +1,6 @@
 ---
 import MaskHeader from "@components/header/headerMask.astro";
+import GlitchBg from "@components/codeGlitch/GlitchBg.astro";
 import Footer from "@components/footer.astro";
 import BackTo from "@components/backTo.astro";
 import Tab from "@components/tab.astro";
@@ -10,7 +11,7 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -21,8 +22,11 @@ const { title } = Astro.props;
   </head>
   <body id="pageLayout" class="themeBase">
     <MaskHeader />
-    <main class="relative grid grid-cols-[1fr_min(65ch,90%)_1fr]">
-      <article class="min-h-screen relative col-start-2 col-end-3">
+    <div class="h-full w-full fixed top-0 left-0 -z-10">
+      <GlitchBg />
+    </div>
+    <main class="grid grid-cols-[1fr_min(65ch,90%)_1fr] overflow-y-auto">
+      <article class="min-h-screen relative col-start-2 col-end-3 p-2">
         <div class="mt-20 mb-20 lg:mt-25 lg:mb-20 w-full">
           <div
             class:list={[
@@ -42,19 +46,19 @@ const { title } = Astro.props;
       </article>
     </main>
   </body>
-</html>
 
-<style is:global>
-  body {
-    background-image: url("/Noise.png");
-    background-size: 15%;
-    /* position: absolute; */
-    /* width: 100%;
+  <style is:global>
+    body {
+      background-image: url("/Noise.png");
+      background-size: 15%;
+      /* position: absolute; */
+      /* width: 100%;
     height: 100%; */
-    /* z-index: -1; */
-    /* top:0;
+      z-index: -1;
+      /* top:0;
     left:0;
     right:0;
     bottom: 0; */
-  }
-</style>
+    }
+  </style>
+</html>
