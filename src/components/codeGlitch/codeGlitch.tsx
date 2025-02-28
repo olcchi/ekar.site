@@ -30,7 +30,7 @@ const LetterGlitch = ({
     const lastGlitchTime = useRef(Date.now());
     const animationStartTime = useRef(Date.now());
     const isEntranceActive = useRef(true);
-    // 进入动画的总时长（毫秒）
+    // entranceDuration
     const entranceDuration = 5000;
 
     const fontSize = 16;
@@ -149,7 +149,7 @@ const LetterGlitch = ({
         const elapsed = Date.now() - animationStartTime.current;
         const progress = Math.min(elapsed / entranceDuration, 1);
 
-        // 调整概率曲线，让开始时概率更低
+        // Adjust the probability curve to start with a lower probability
         const adjustedProgress = Math.pow(progress, 1);
 
         let allActive = true;
@@ -158,7 +158,7 @@ const LetterGlitch = ({
             const y = Math.floor(index / grid.current.columns) * charHeight + charHeight / 2;
             const distance = Math.sqrt((x - centerX) * (x - centerX) + (y - centerY) * (y - centerY));
             const baseProbability = distance / maxRadius;
-            // 根据动画进度调整概率
+            // Adjust the probability curve to start with a lower probability
             const probability = baseProbability * adjustedProgress / 200
 
 
