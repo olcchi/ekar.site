@@ -21,75 +21,28 @@ const LetterGlitch = ({
             color: string;
             targetColor: string;
             colorProgress: number;
+            active: boolean;
+            lastGlitchTime: number;
         }[]
     >([]);
     const grid = useRef({ columns: 0, rows: 0 });
     const context = useRef<CanvasRenderingContext2D | null>(null);
     const lastGlitchTime = useRef(Date.now());
+    const animationStartTime = useRef(Date.now());
+    const isEntranceActive = useRef(true);
+    // 进入动画的总时长（毫秒）
+    const entranceDuration = 5000;
 
     const fontSize = 16;
     const charWidth = 10;
     const charHeight = 20;
 
     const lettersAndSymbols = [
-        "A",
-        "B",
-        "C",
-        "D",
-        "E",
-        "F",
-        "G",
-        "H",
-        "I",
-        "J",
-        "K",
-        "L",
-        "M",
-        "N",
-        "O",
-        "P",
-        "Q",
-        "R",
-        "S",
-        "T",
-        "U",
-        "V",
-        "W",
-        "X",
-        "Y",
-        "Z",
-        "!",
-        "@",
-        "#",
-        "$",
-        "&",
-        "*",
-        "(",
-        ")",
-        "-",
-        "_",
-        "+",
-        "=",
-        "/",
-        "[",
-        "]",
-        "{",
-        "}",
-        ";",
-        ":",
-        "<",
-        ">",
-        ",",
-        "0",
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
+        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+        "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+        "!", "@", "#", "$", "&", "*", "(", ")", "-", "_", "+", "=", "/",
+        "[", "]", "{", "}", ";", ":", "<", ">", ",", "0", "1", "2", "3",
+        "4", "5", "6", "7", "8", "9"
     ];
 
     const getRandomChar = () => {
@@ -104,18 +57,13 @@ const LetterGlitch = ({
 
     const hexToRgb = (hex: string) => {
         const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-        hex = hex.replace(shorthandRegex, (m, r, g, b) => {
-            return r + r + g + g + b + b;
-        });
-
+        hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
         const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-        return result
-            ? {
-                r: parseInt(result[1], 16),
-                g: parseInt(result[2], 16),
-                b: parseInt(result[3], 16),
-            }
-            : null;
+        return result ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16)
+        } : null;
     };
 
     const interpolateColor = (
@@ -128,7 +76,7 @@ const LetterGlitch = ({
             g: Math.round(start.g + (end.g - start.g) * factor),
             b: Math.round(start.b + (end.b - start.b) * factor),
         };
-        return `rgb(${result.r}, ${result.g}, ${result.b})`;
+        return `rgb(${result.r},${result.g},${result.b})`;
     };
 
     const calculateGrid = (width: number, height: number) => {
@@ -145,6 +93,8 @@ const LetterGlitch = ({
             color: getRandomColor(),
             targetColor: getRandomColor(),
             colorProgress: 1,
+            active: false,
+            lastGlitchTime: Date.now()
         }));
     };
 
@@ -169,7 +119,6 @@ const LetterGlitch = ({
 
         const { columns, rows } = calculateGrid(rect.width, rect.height);
         initializeLetters(columns, rows);
-        drawLetters();
     };
 
     const drawLetters = () => {
@@ -181,6 +130,7 @@ const LetterGlitch = ({
         ctx.textBaseline = "top";
 
         letters.current.forEach((letter, index) => {
+            if (!letter.active) return;
             const x = (index % grid.current.columns) * charWidth;
             const y = Math.floor(index / grid.current.columns) * charHeight;
             ctx.fillStyle = letter.color;
@@ -188,23 +138,67 @@ const LetterGlitch = ({
         });
     };
 
-    const updateLetters = () => {
-        if (!letters.current || letters.current.length === 0) return; // Prevent accessing empty array
+    const handleEntranceAnimation = () => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const { width, height } = canvas.getBoundingClientRect();
+        const centerX = width / 2;
+        const centerY = height / 2;
+        const maxRadius = Math.sqrt(centerX * centerX + centerY * centerY);
 
-        const updateCount = Math.max(1, Math.floor(letters.current.length * 0.05));
+        const elapsed = Date.now() - animationStartTime.current;
+        const progress = Math.min(elapsed / entranceDuration, 1);
+
+        // 调整概率曲线，让开始时概率更低
+        const adjustedProgress = Math.pow(progress, 1);
+
+        let allActive = true;
+        letters.current.forEach((letter, index) => {
+            const x = (index % grid.current.columns) * charWidth + charWidth / 2;
+            const y = Math.floor(index / grid.current.columns) * charHeight + charHeight / 2;
+            const distance = Math.sqrt((x - centerX) * (x - centerX) + (y - centerY) * (y - centerY));
+            const baseProbability = distance / maxRadius;
+            // 根据动画进度调整概率
+            const probability = baseProbability * adjustedProgress / 200
+
+
+            if (!letter.active && Math.random() < probability) {
+                letter.active = true;
+                letter.char = getRandomChar();
+                letter.targetColor = getRandomColor();
+                letter.colorProgress = 0;
+            }
+
+            if (!letter.active) {
+                allActive = false;
+            }
+        });
+
+        if (allActive) {
+            isEntranceActive.current = false;
+        }
+    };
+
+    const updateLetters = () => {
+        if (!letters.current || letters.current.length === 0) return;
+
+        const activeLetters = letters.current.filter(l => l.active);
+        if (activeLetters.length === 0) return;
+
+        const updateCount = Math.max(1, Math.floor(activeLetters.length * 0.05));
 
         for (let i = 0; i < updateCount; i++) {
-            const index = Math.floor(Math.random() * letters.current.length);
-            if (!letters.current[index]) continue; // Skip if index is invalid
+            const index = Math.floor(Math.random() * activeLetters.length);
+            const letter = activeLetters[index];
 
-            letters.current[index].char = getRandomChar();
-            letters.current[index].targetColor = getRandomColor();
+            letter.char = getRandomChar();
+            letter.targetColor = getRandomColor();
 
             if (!smooth) {
-                letters.current[index].color = letters.current[index].targetColor;
-                letters.current[index].colorProgress = 1;
+                letter.color = letter.targetColor;
+                letter.colorProgress = 1;
             } else {
-                letters.current[index].colorProgress = 0;
+                letter.colorProgress = 0;
             }
         }
     };
@@ -214,7 +208,7 @@ const LetterGlitch = ({
         letters.current.forEach((letter) => {
             if (letter.colorProgress < 1) {
                 letter.colorProgress += 0.05;
-                if (letter.colorProgress > 1) letter.colorProgress = 1;
+                letter.colorProgress = Math.min(letter.colorProgress, 0.5);
 
                 const startRgb = hexToRgb(letter.color);
                 const endRgb = hexToRgb(letter.targetColor);
@@ -235,12 +229,17 @@ const LetterGlitch = ({
     };
 
     const animate = () => {
+        if (isEntranceActive.current) {
+            handleEntranceAnimation();
+        }
+
         const now = Date.now();
         if (now - lastGlitchTime.current >= glitchSpeed) {
             updateLetters();
-            drawLetters();
             lastGlitchTime.current = now;
         }
+
+        drawLetters();
 
         if (smooth) {
             handleSmoothTransitions();
@@ -254,41 +253,37 @@ const LetterGlitch = ({
         if (!canvas) return;
 
         context.current = canvas.getContext("2d");
+        animationStartTime.current = Date.now();
         resizeCanvas();
         animate();
 
         let resizeTimeout;
-
         const handleResize = () => {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
-                cancelAnimationFrame(animationRef.current as number);
+                cancelAnimationFrame(animationRef.current!);
+                animationStartTime.current = Date.now();
+                isEntranceActive.current = true;
                 resizeCanvas();
                 animate();
-            }, 100);
+            }, 50);
         };
 
         window.addEventListener("resize", handleResize);
-
         return () => {
             cancelAnimationFrame(animationRef.current!);
             window.removeEventListener("resize", handleResize);
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [glitchSpeed, smooth]);
 
     return (
         <div className="relative overflow-hidden h-full w-full">
             <canvas ref={canvasRef} className="block w-full h-full" />
             {outerVignette && (
-                <div
-                    className="absolute top-0 left-0 w-full h-full pointer-events-none bg-[radial-gradient(circle,_rgba(0,0,0,0)_60%,_rgba(0,0,0,1)_100%)]"
-                ></div>
+                <div className="absolute top-0 left-0 w-full h-full pointer-events-none bg-[radial-gradient(circle,_rgba(0,0,0,0)_60%,_rgba(0,0,0,1)_100%)]" />
             )}
             {centerVignette && (
-                <div
-                    className="absolute top-0 left-0 w-full h-full pointer-events-none bg-gradient-repeating-radial from-gray-50 dark:from-black to-transparent"
-                ></div>
+                <div className="absolute top-0 left-0 w-full h-full pointer-events-none bg-gradient-repeating-radial from-gray-50 dark:from-black to-transparent" />
             )}
         </div>
     );
