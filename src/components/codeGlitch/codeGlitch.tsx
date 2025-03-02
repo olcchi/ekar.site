@@ -234,7 +234,8 @@ const LetterGlitch = ({
         }
 
         const now = Date.now();
-        if (now - lastGlitchTime.current >= glitchSpeed) {
+        const distance = now - lastGlitchTime.current
+        if (distance >= glitchSpeed) {
             updateLetters();
             lastGlitchTime.current = now;
         }
@@ -257,22 +258,22 @@ const LetterGlitch = ({
         resizeCanvas();
         animate();
 
-        let resizeTimeout;
-        const handleResize = () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                cancelAnimationFrame(animationRef.current!);
-                animationStartTime.current = Date.now();
-                isEntranceActive.current = true;
-                resizeCanvas();
-                animate();
-            }, 50);
-        };
+        // let resizeTimeout;
+        // const handleResize = () => {
+        //     clearTimeout(resizeTimeout);
+        //     resizeTimeout = setTimeout(() => {
+        //         cancelAnimationFrame(animationRef.current!);
+        //         animationStartTime.current = Date.now();
+        //         isEntranceActive.current = true;
+        //         resizeCanvas();
+        //         animate();
+        //     }, 500);
+        // };
 
-        window.addEventListener("resize", handleResize);
+        // window.addEventListener("resize", handleResize);
         return () => {
             cancelAnimationFrame(animationRef.current!);
-            window.removeEventListener("resize", handleResize);
+            // window.removeEventListener("resize", handleResize);
         };
     }, [glitchSpeed, smooth]);
 
