@@ -1,6 +1,7 @@
 ---
 import MaskHeader from "@components/header/headerMask.astro";
-import GlitchBg from "@components/codeGlitch/GlitchBg.astro";
+import GlitchBg from "@components/letterGlitch/GlitchBg.astro";
+import Glitch from "@components/letterGlitch/Glitch";
 import Footer from "@components/footer.astro";
 import BackTo from "@components/backTo.astro";
 import Tab from "@components/tab.astro";
@@ -20,14 +21,14 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.svg" />
     <script
-    defer
-    src="https://cloud.umami.is/script.js "
-    data-website-id=`${import.meta.env.UMAMI_WEBSITE_ID}`></script>
+      defer
+      src="https://cloud.umami.is/script.js "
+      data-website-id=`${import.meta.env.UMAMI_WEBSITE_ID}`></script>
   </head>
   <body id="pageLayout" class="themeBase">
     <MaskHeader />
     <div class="h-full w-full fixed top-0 left-0 -z-10">
-      <GlitchBg />
+      <Glitch client:only="react" />
     </div>
     <main class="grid grid-cols-[1fr_min(65ch,90%)_1fr] overflow-y-auto">
       <article class="min-h-screen relative col-start-2 col-end-3 p-2">
@@ -50,5 +51,4 @@ const { title } = Astro.props;
       </article>
     </main>
   </body>
-
 </html>
