@@ -21,6 +21,7 @@
     "@types/react-dom": "^19.0.4",
     "astro": "^5.3.1",
     "mdast-util-to-string": "^3.2.0",
+    "motion": "^12.4.10",
     "postprocessing": "^6.36.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
