@@ -1,4 +1,4 @@
-### ***[ekar.site](https://ekar.site)***   
+### ***[olcchi.me](https://olcchi.me)***   
 
  Build fully with [Astro](https://astro.build/) components and integrate a blog feature that allows you to write articles using Markdown.
 
@@ -8,11 +8,11 @@
 
 One-click to build and deploy your personal website using this template on Netlify.  
 
- [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/olcchi/ekar.site)
+ [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/olcchi/olcchi.me)
 
 Create a new repository using this template.  
 
-[Create a repository](https://github.com/olcchi/ekar.site/generate)
+[Create a repository](https://github.com/olcchi/olcchi.me/generate)
 
 ### ***CLI Commands***  
 
