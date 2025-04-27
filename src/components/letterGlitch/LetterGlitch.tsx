@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useCallback, useMemo } from "react";
 
 const LetterGlitch = ({
     glitchColors = ["#2b4539", "#61dca3", "#61b3dc"],
@@ -30,6 +30,10 @@ const LetterGlitch = ({
     const lastGlitchTime = useRef(Date.now());
     const animationStartTime = useRef(Date.now());
     const isEntranceActive = useRef(true);
+    const lastFrameTime = useRef(0);
+    const needsRedraw = useRef(false);
+    // Frame rate control interval (approx 16.7ms = 60fps)
+    const frameInterval = useRef(1000 / 30); // Reduce to 30fps to lower CPU usage
     // entranceDuration
     const entranceDuration = 5000;
 
@@ -37,25 +41,29 @@ const LetterGlitch = ({
     const charWidth = 10;
     const charHeight = 20;
 
-    const lettersAndSymbols = [
+    // Cache character array with useMemo
+    const lettersAndSymbols = useMemo(() => [
         "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
         "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
         "!", "@", "#", "$", "&", "*", "(", ")", "-", "_", "+", "=", "/",
         "[", "]", "{", "}", ";", ":", "<", ">", ",", "0", "1", "2", "3",
         "4", "5", "6", "7", "8", "9"
-    ];
+    ], []);
 
-    const getRandomChar = () => {
+    // Pre-calculate random character index
+    const getRandomChar = useCallback(() => {
         return lettersAndSymbols[
             Math.floor(Math.random() * lettersAndSymbols.length)
         ];
-    };
+    }, [lettersAndSymbols]);
 
-    const getRandomColor = () => {
+    // Pre-calculate random color index
+    const getRandomColor = useCallback(() => {
         return glitchColors[Math.floor(Math.random() * glitchColors.length)];
-    };
+    }, [glitchColors]);
 
-    const hexToRgb = (hex: string) => {
+    // Cache color conversion function
+    const hexToRgb = useCallback((hex: string) => {
         const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
         hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
         const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -64,30 +72,34 @@ const LetterGlitch = ({
             g: parseInt(result[2], 16),
             b: parseInt(result[3], 16)
         } : null;
-    };
+    }, []);
 
-    const interpolateColor = (
-        start: { r: number; g: number; b: number },
-        end: { r: number; g: number; b: number },
-        factor: number
-    ) => {
-        const result = {
-            r: Math.round(start.r + (end.r - start.r) * factor),
-            g: Math.round(start.g + (end.g - start.g) * factor),
-            b: Math.round(start.b + (end.b - start.b) * factor),
-        };
-        return `rgb(${result.r},${result.g},${result.b})`;
-    };
+    // Cache color interpolation function
+    const interpolateColor = useCallback(
+        (
+            start: { r: number; g: number; b: number },
+            end: { r: number; g: number; b: number },
+            factor: number
+        ) => {
+            const result = {
+                r: Math.round(start.r + (end.r - start.r) * factor),
+                g: Math.round(start.g + (end.g - start.g) * factor),
+                b: Math.round(start.b + (end.b - start.b) * factor),
+            };
+            return `rgb(${result.r},${result.g},${result.b})`;
+        }, []);
 
-    const calculateGrid = (width: number, height: number) => {
+    const calculateGrid = useCallback((width: number, height: number) => {
         const columns = Math.ceil(width / charWidth);
         const rows = Math.ceil(height / charHeight);
         return { columns, rows };
-    };
+    }, []);
 
-    const initializeLetters = (columns: number, rows: number) => {
+    const initializeLetters = useCallback((columns: number, rows: number) => {
         grid.current = { columns, rows };
         const totalLetters = columns * rows;
+        
+        // Create a single array instead of recalculating for each element
         letters.current = Array.from({ length: totalLetters }, () => ({
             char: getRandomChar(),
             color: getRandomColor(),
@@ -96,17 +108,19 @@ const LetterGlitch = ({
             active: false,
             lastGlitchTime: Date.now()
         }));
-    };
+    }, [getRandomChar, getRandomColor]);
 
-    const resizeCanvas = () => {
+    const resizeCanvas = useCallback(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
         const parent = canvas.parentElement;
         if (!parent) return;
 
         const dpr = window.devicePixelRatio || 1;
-        const screenHeight = window.screen.height;
-        const screenWidth = window.screen.width;
+        // Use innerHeight instead of screen.height
+        const screenHeight = window.innerHeight;
+        // Use innerWidth instead of screen.width
+        const screenWidth = window.innerWidth;
         canvas.width = screenWidth * dpr;
         canvas.height = screenHeight * dpr;
 
@@ -119,9 +133,10 @@ const LetterGlitch = ({
 
         const { columns, rows } = calculateGrid(screenWidth, screenHeight);
         initializeLetters(columns, rows);
-    };
+        needsRedraw.current = true;
+    }, [calculateGrid, initializeLetters]);
 
-    const drawLetters = () => {
+    const drawLetters = useCallback(() => {
         if (!context.current || letters.current.length === 0) return;
         const ctx = context.current;
         const { width, height } = canvasRef.current!.getBoundingClientRect();
@@ -129,6 +144,9 @@ const LetterGlitch = ({
         ctx.font = `${fontSize}px monospace`;
         ctx.textBaseline = "top";
 
+        // Only redraw when truly needed
+        if (!needsRedraw.current) return;
+        
         letters.current.forEach((letter, index) => {
             if (!letter.active) return;
             const x = (index % grid.current.columns) * charWidth;
@@ -136,9 +154,11 @@ const LetterGlitch = ({
             ctx.fillStyle = letter.color;
             ctx.fillText(letter.char, x, y);
         });
-    };
+        
+        needsRedraw.current = false;
+    }, []);
 
-    const handleEntranceAnimation = () => {
+    const handleEntranceAnimation = useCallback(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
         const { width, height } = canvas.getBoundingClientRect();
@@ -149,62 +169,87 @@ const LetterGlitch = ({
         const elapsed = Date.now() - animationStartTime.current;
         const progress = Math.min(elapsed / entranceDuration, 1);
 
+        // Optimization: only update when necessary
+        if (progress >= 1 && !isEntranceActive.current) return;
+
         // Adjust the probability curve to start with a lower probability
         const adjustedProgress = Math.pow(progress, 1);
 
         let allActive = true;
+        let hasChanges = false;
+        
+        // 批量计算位置，减少每次循环中的计算量
         letters.current.forEach((letter, index) => {
+            if (letter.active) return; // 已激活的直接跳过
+            
             const x = (index % grid.current.columns) * charWidth + charWidth / 2;
             const y = Math.floor(index / grid.current.columns) * charHeight + charHeight / 2;
             const distance = Math.sqrt((x - centerX) * (x - centerX) + (y - centerY) * (y - centerY));
             const baseProbability = distance / maxRadius;
-            // Adjust the probability curve to start with a lower probability
+            // Optimize probability calculation to reduce random calls
             const probability = baseProbability * adjustedProgress / 200
 
-
-            if (!letter.active && Math.random() < probability) {
+            if (Math.random() < probability) {
                 letter.active = true;
                 letter.char = getRandomChar();
                 letter.targetColor = getRandomColor();
                 letter.colorProgress = 0;
-            }
-
-            if (!letter.active) {
+                hasChanges = true;
+            } else {
                 allActive = false;
             }
         });
 
+        if (hasChanges) {
+            needsRedraw.current = true;
+        }
+
         if (allActive) {
             isEntranceActive.current = false;
         }
-    };
+    }, [getRandomChar, getRandomColor]);
 
-    const updateLetters = () => {
+    const updateLetters = useCallback(() => {
         if (!letters.current || letters.current.length === 0) return;
 
+        // Avoid filtering active letters every time, only calculate when needed
+        const activeLettersCount = letters.current.filter(l => l.active).length;
+        if (activeLettersCount === 0) return;
+
+        // Reduce update count to lower CPU load
+        const updateCount = Math.max(1, Math.floor(activeLettersCount * 0.02)); // Reduced from 0.05 to 0.02
+        let hasChanges = false;
+
+        // Use pre-generated random indices array to avoid multiple Math.random calls
+        const randomIndices = Array.from({ length: updateCount }, 
+            () => Math.floor(Math.random() * activeLettersCount));
+        
         const activeLetters = letters.current.filter(l => l.active);
-        if (activeLetters.length === 0) return;
+        randomIndices.forEach(randomIndex => {
+            if (randomIndex < activeLetters.length) {
+                const letter = activeLetters[randomIndex];
+                letter.char = getRandomChar();
+                letter.targetColor = getRandomColor();
 
-        const updateCount = Math.max(1, Math.floor(activeLetters.length * 0.05));
-
-        for (let i = 0; i < updateCount; i++) {
-            const index = Math.floor(Math.random() * activeLetters.length);
-            const letter = activeLetters[index];
-
-            letter.char = getRandomChar();
-            letter.targetColor = getRandomColor();
-
-            if (!smooth) {
-                letter.color = letter.targetColor;
-                letter.colorProgress = 1;
-            } else {
-                letter.colorProgress = 0;
+                if (!smooth) {
+                    letter.color = letter.targetColor;
+                    letter.colorProgress = 1;
+                } else {
+                    letter.colorProgress = 0;
+                }
+                hasChanges = true;
             }
-        }
-    };
+        });
 
-    const handleSmoothTransitions = () => {
-        let needsRedraw = false;
+        if (hasChanges) {
+            needsRedraw.current = true;
+        }
+    }, [getRandomChar, getRandomColor, smooth]);
+
+    const handleSmoothTransitions = useCallback(() => {
+        let hasChanges = false;
+        
+        // Batch process color changes
         letters.current.forEach((letter) => {
             if (letter.colorProgress < 1) {
                 letter.colorProgress += 0.05;
@@ -218,44 +263,62 @@ const LetterGlitch = ({
                         endRgb,
                         letter.colorProgress
                     );
-                    needsRedraw = true;
+                    hasChanges = true;
                 }
             }
         });
 
-        if (needsRedraw) {
-            drawLetters();
+        if (hasChanges) {
+            needsRedraw.current = true;
         }
-    };
+    }, [hexToRgb, interpolateColor]);
 
-    const animate = () => {
+    const animate = useCallback(() => {
+        const now = Date.now();
+        const elapsed = now - lastFrameTime.current;
+        
+        // Implement frame rate control to reduce unnecessary rendering
+        if (elapsed < frameInterval.current) {
+            animationRef.current = requestAnimationFrame(animate);
+            return;
+        }
+        
+        lastFrameTime.current = now;
+        
         if (isEntranceActive.current) {
             handleEntranceAnimation();
         }
 
-        const now = Date.now();
-        const distance = now - lastGlitchTime.current
-        if (distance >= glitchSpeed) {
+        const glitchElapsed = now - lastGlitchTime.current;
+        if (glitchElapsed >= glitchSpeed) {
             updateLetters();
             lastGlitchTime.current = now;
         }
 
-        drawLetters();
-
         if (smooth) {
             handleSmoothTransitions();
         }
+        
+        // Only redraw when necessary
+        if (needsRedraw.current) {
+            drawLetters();
+        }
 
         animationRef.current = requestAnimationFrame(animate);
-    };
+    }, [drawLetters, handleEntranceAnimation, handleSmoothTransitions, updateLetters, smooth, glitchSpeed]);
 
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
 
-        context.current = canvas.getContext("2d");
+        context.current = canvas.getContext("2d", { alpha: true });
         animationStartTime.current = Date.now();
+        lastFrameTime.current = Date.now();
         resizeCanvas();
+        
+        // Immediately mark as needing redraw
+        needsRedraw.current = true;
+        
         animate();
 
         // let resizeTimeout;
@@ -272,10 +335,12 @@ const LetterGlitch = ({
 
         // window.addEventListener("resize", handleResize);
         return () => {
-            cancelAnimationFrame(animationRef.current!);
+            if (animationRef.current) {
+                cancelAnimationFrame(animationRef.current);
+            }
             // window.removeEventListener("resize", handleResize);
         };
-    }, [glitchSpeed, smooth]);
+    }, [animate, resizeCanvas]);
 
     return (
         <div className="relative overflow-hidden h-full w-full">
